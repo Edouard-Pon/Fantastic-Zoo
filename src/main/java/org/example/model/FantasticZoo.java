@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class FantasticZoo {
     private String name;
-    private String masterName;//TODO replace by Master class
+    private Master master;
     private int maxEnclosureNumber;
     private ArrayList<Enclosure> enclosureList;
 
@@ -19,9 +19,9 @@ public class FantasticZoo {
         enclosureList.forEach((enclosure) -> creatures.addAll(enclosure.getCreaturesList()));
         return creatures;
     }
-    public FantasticZoo(String name, String masterName, int maxEnclosureNumber) {
+    public FantasticZoo(String name, Master master, int maxEnclosureNumber) {
         this.name = name;
-        this.masterName = masterName;
+        this.master = master;
         this.maxEnclosureNumber = maxEnclosureNumber;
     }
     public String getName() {
@@ -32,12 +32,12 @@ public class FantasticZoo {
         this.name = name;
     }
 
-    public String getMasterName() {
-        return masterName;
+    public Master getMaster() {
+        return master;
     }
 
-    public void setMasterName(String masterName) {
-        this.masterName = masterName;
+    public void setMaster(Master master) {
+        this.master = master;
     }
 
     public int getMaxEnclosureNumber() {

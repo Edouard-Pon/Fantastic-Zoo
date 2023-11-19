@@ -1,7 +1,6 @@
 package org.example.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Enclosure {
     private String name;
@@ -17,6 +16,7 @@ public class Enclosure {
         this.maxCreaturesNumber = maxCreaturesNumber;
         this.cleanlinessLevel = true;
         this.numberOfCreatures = 0;
+        this.creaturesList = new ArrayList<>();
     }
 
     // TODO Finish the getCharacteristics
@@ -26,20 +26,30 @@ public class Enclosure {
 
     // TODO Add verification process
     public void addCreatures(Creature... creatures) {
-        if (creatures != null) {
-            numberOfCreatures += creatures.length;
-            creaturesList.addAll(Arrays.asList(creatures));
+        if (creatures != null && maxCreaturesNumber > creaturesList.size()) {
+            for (Creature creature : creatures) {
+                if (numberOfCreatures == maxCreaturesNumber) break;
+                numberOfCreatures++;
+                creaturesList.add(creature);
+            }
         }
     }
 
     // TODO Add removing specific creatures
     public void removeCreatures() {
         creaturesList.clear();
+        numberOfCreatures = 0;
     }
 
     public void feedCreatures() {
         for (Creature creature : creaturesList) {
             creature.eat();
+        }
+    }
+
+    public void maintain() {
+        if (!cleanlinessLevel && creaturesList.isEmpty()) {
+            cleanlinessLevel = true;
         }
     }
 
@@ -65,5 +75,9 @@ public class Enclosure {
 
     public boolean cleanlinessLevel() {
         return cleanlinessLevel;
+    }
+
+    public void setCleanlinessLevel(boolean cleanlinessLevel) {
+        this.cleanlinessLevel = cleanlinessLevel;
     }
 }

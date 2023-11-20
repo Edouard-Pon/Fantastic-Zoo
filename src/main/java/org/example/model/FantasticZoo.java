@@ -23,11 +23,13 @@ public class FantasticZoo {
         this.name = name;
         this.master = master;
         this.maxEnclosureNumber = maxEnclosureNumber;
+        this.enclosureList = new ArrayList<>();
     }
     public String getName() {
         return name;
     }
 
+    // TODO Add restriction to add enclosures when limit is exceeded
     public void addEnclosure(Enclosure enclosure){
         this.enclosureList.add(enclosure);
     }

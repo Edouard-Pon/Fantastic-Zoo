@@ -29,8 +29,12 @@ public class FantasticZoo {
         return name;
     }
 
-    // TODO Add restriction to add enclosures when limit is exceeded
-    public void addEnclosure(Enclosure enclosure){
+    // TODO Implement better error handling, requires UI
+    public void addEnclosure(Enclosure enclosure) {
+        if (maxEnclosureNumber == enclosureList.size()) {
+            System.out.println("The max enclosure limit is reached!");
+            return;
+        }
         this.enclosureList.add(enclosure);
     }
 

@@ -6,9 +6,9 @@ public class Creature {
     private float weight;
     private float height;
     private int age;
-    private boolean hunger;
+    private boolean hunger;//TODO replace with 0-100 scale
     private boolean sleeping;
-    private boolean health;
+    private boolean health;//TODO replace with 0-100 scale
 
     public Creature(String name, boolean gender, float weight, float height, int age) {
         this.name = name;

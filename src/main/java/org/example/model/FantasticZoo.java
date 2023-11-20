@@ -28,6 +28,10 @@ public class FantasticZoo {
         return name;
     }
 
+    public void addEnclosure(Enclosure enclosure){
+        this.enclosureList.add(enclosure);
+    }
+
     public void setName(String name) {
         this.name = name;
     }

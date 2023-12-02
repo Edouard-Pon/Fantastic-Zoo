@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.model.spaces;
+
+import org.example.model.creatures.Creature;
+import org.example.model.abilities.Flying;
 
 public class Aviary extends Enclosure {
     private int height;

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.creatures;
 
 public class Creature {
     private String name;

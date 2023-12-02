@@ -1,4 +1,6 @@
-package org.example.model;
+package org.example.model.reproduction;
+
+import org.example.model.creatures.Creature;
 
 public class Viviparous extends Creature {
     private boolean gestation;

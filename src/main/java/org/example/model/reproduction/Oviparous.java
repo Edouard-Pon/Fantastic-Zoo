@@ -1,6 +1,8 @@
-package org.example.model;
+package org.example.model.reproduction;
 
-public class Oviparous extends Creature{
+import org.example.model.creatures.Creature;
+
+public class Oviparous extends Creature {
     private boolean eggFertile;
     private int incubationPeriod;
 

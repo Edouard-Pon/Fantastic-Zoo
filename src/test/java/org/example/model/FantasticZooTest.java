@@ -1,5 +1,13 @@
 package org.example.model;
 
+import org.example.model.creatures.Dragon;
+import org.example.model.creatures.Kraken;
+import org.example.model.creatures.Phoenix;
+import org.example.model.management.Master;
+import org.example.model.spaces.Aquarium;
+import org.example.model.spaces.Aviary;
+import org.example.model.spaces.Enclosure;
+import org.example.model.zoo.FantasticZoo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

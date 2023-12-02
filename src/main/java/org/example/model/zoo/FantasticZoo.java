@@ -1,4 +1,8 @@
-package org.example.model;
+package org.example.model.zoo;
+
+import org.example.model.creatures.Creature;
+import org.example.model.management.Master;
+import org.example.model.spaces.Enclosure;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;

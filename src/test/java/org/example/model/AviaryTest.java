@@ -1,5 +1,8 @@
 package org.example.model;
 
+import org.example.model.creatures.Dragon;
+import org.example.model.creatures.Lycanthrope;
+import org.example.model.spaces.Aviary;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

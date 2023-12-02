@@ -1,4 +1,6 @@
-package org.example.model;
+package org.example.model.spaces;
+
+import org.example.model.creatures.Creature;
 
 import java.util.ArrayList;
 

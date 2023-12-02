@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.model.spaces;
+
+import org.example.model.creatures.Creature;
+import org.example.model.abilities.Swimming;
 
 public class Aquarium extends Enclosure {
     private int depth; // TODO Replace with better solution

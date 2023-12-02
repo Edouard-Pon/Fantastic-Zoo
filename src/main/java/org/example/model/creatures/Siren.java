@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.model.creatures;
+
+import org.example.model.abilities.Swimming;
+import org.example.model.reproduction.Viviparous;
 
 public class Siren extends Viviparous implements Swimming {
     public Siren(String name, boolean gender, float weight, float height, int age) {

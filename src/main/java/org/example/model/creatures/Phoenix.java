@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.model.creatures;
+
+import org.example.model.abilities.Flying;
+import org.example.model.reproduction.Oviparous;
 
 public class Phoenix extends Oviparous implements Flying {
     public Phoenix(String name, boolean gender, float weight, float height, int age) {

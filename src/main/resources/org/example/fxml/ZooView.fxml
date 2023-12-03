@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" id="root" fx:controller="org.example.view.menu.ZooController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.menu.ZooController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="450.0" layoutY="130.0" prefHeight="100.0" prefWidth="400.0" text="Create Zoo">
          <font>
@@ -30,17 +30,22 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnCreateZoo" layoutX="525.0" layoutY="550.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Create Zoo">
+      <Button fx:id="btnCreateZoo" layoutX="525.0" layoutY="550.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="50.0" prefWidth="250.0" text="Create Zoo">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnModifyZoo" layoutX="525.0" layoutY="620.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Modify existant Zoo">
+      <Button fx:id="btnModifyZoo" layoutX="525.0" layoutY="620.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="50.0" prefWidth="250.0" text="Modify existant Zoo">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <ComboBox fx:id="masterComboBox" layoutX="550.0" layoutY="300.0" prefHeight="30.0" prefWidth="200.0" />
       <TextField fx:id="nameTextField" layoutX="550.0" layoutY="390.0" prefHeight="30.0" prefWidth="200.0" />
+      <Button fx:id="btnMainMenu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="50.0" prefWidth="150.0" text="Main Menu">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

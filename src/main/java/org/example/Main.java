@@ -1,24 +1,19 @@
 package org.example;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import org.example.view.manager.SceneManager;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/menu/MainView.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+    public void start(Stage primaryStage) {
+        SceneManager.getInstance().preloadScene("MainView");
+        SceneManager.getInstance().preloadScene("MasterView");
+        SceneManager.getInstance().preloadScene("ZooView");
+        SceneManager.getInstance().preloadScene("SimulationView");
 
-        primaryStage.setTitle("Fantastic Zoo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        SceneManager.getInstance().showScene("MainView");
     }
 
     public static void main(String[] args) {

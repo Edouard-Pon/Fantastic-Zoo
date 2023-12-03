@@ -18,6 +18,18 @@ public class Creature {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "Name:'" + name + '\'' +
+                ", gender:" + gender +
+                ", weight:" + weight +
+                ", height:" + height +
+                ", age:" + age +
+                ", hunger:" + hunger +
+                ", sleeping:" + sleeping +
+                ", health:" + health + "; ";
+    }
+
     public void eat() {
         if (!sleeping && hunger) {
             hunger = false;

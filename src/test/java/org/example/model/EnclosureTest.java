@@ -1,6 +1,7 @@
 package org.example.model;
 
 import org.example.model.creatures.Lycanthrope;
+import org.example.model.management.Master;
 import org.example.model.spaces.Enclosure;
 import org.junit.jupiter.api.Test;
 
@@ -49,4 +50,19 @@ public class EnclosureTest {
         assertEquals(0, e1.getNumberOfCreatures(), "Number of creatures");
         assertTrue(e1.getCreaturesList().isEmpty());
     }
+
+    @Test
+    public void testGetCharacteristics() {
+        Lycanthrope l1 = new Lycanthrope("L1", true, 50, 25, 20);
+        Lycanthrope l2 = new Lycanthrope("L2", false, 35, 22, 15);
+        Lycanthrope l3 = new Lycanthrope("L3", true, 55, 20, 25);
+
+        Enclosure e1 = new Enclosure("Lycanthropes Enclosure", "150x150", 5);
+        e1.addCreatures(l1, l2, l3);
+
+        assertEquals("Lycanthropes Enclosure", e1.getCharacteristics().get("Name"));
+        assertEquals("150x150", e1.getCharacteristics().get("Area"));
+        assertEquals("true", e1.getCharacteristics().get("Cleanliness Level"));
+    }
+
 }

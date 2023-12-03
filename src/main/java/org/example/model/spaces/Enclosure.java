@@ -3,6 +3,7 @@ package org.example.model.spaces;
 import org.example.model.creatures.Creature;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Enclosure {
     private String name;
@@ -22,8 +23,13 @@ public class Enclosure {
     }
 
     // TODO Finish the getCharacteristics
-    public void getCharacteristics() {
-        return;
+    public HashMap<String, String> getCharacteristics() {
+        HashMap<String, String> characteristics = new HashMap<String, String>();
+        characteristics.put("Name", name);
+        characteristics.put("Area", area);
+        characteristics.put("Cleanliness Level", String.valueOf(cleanlinessLevel));
+        characteristics.put("Creatures inside",creaturesList.toString());
+        return characteristics;
     }
 
     // TODO Add verification process

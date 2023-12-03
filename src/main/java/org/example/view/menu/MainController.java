@@ -10,14 +10,18 @@ import org.example.model.management.Master;
 import org.example.model.zoo.FantasticZoo;
 import org.example.view.manager.SceneManager;
 import javafx.event.ActionEvent;
+import org.example.viewmodel.menu.MainViewModel;
 
 public class MainController {
+    private MainViewModel mainViewModel;
     @FXML
     private ComboBox<String> cbFantasticZooName;
     @FXML
     private Label lblWarning;
 
-    public MainController() {}
+    public MainController() {
+        mainViewModel = new MainViewModel();
+    }
 
     @FXML
     public void navButtonsHandler(ActionEvent event) {
@@ -26,7 +30,7 @@ public class MainController {
             case "btnCreateZoo" -> SceneManager.getInstance().showScene("ZooView");
             case "btnStartSimulation" -> {
                 setCurrentZoo();
-                if (Data.getInstance().getCurrentZoo() == null) {
+                if (mainViewModel.getCurrentZoo() == null) {
                     lblWarning.setText("Please select a zoo!");
                     break;
                 }
@@ -37,7 +41,7 @@ public class MainController {
 
     @FXML
     public void updateZoosList(MouseEvent event) {
-        for (FantasticZoo fantasticZoo : Data.getInstance().getFantasticZoosList()) {
+        for (FantasticZoo fantasticZoo : mainViewModel.getFantasticZoosList()) {
             if (cbFantasticZooName.getItems().contains(fantasticZoo.getName())) continue;
             cbFantasticZooName.getItems().add((fantasticZoo).getName());
         }
@@ -48,6 +52,6 @@ public class MainController {
             lblWarning.setText("Please select a zoo!");
             return;
         }
-        Data.getInstance().setCurrentZoo(Data.getInstance().getFantasticZoo(cbFantasticZooName.getValue()));
+        mainViewModel.setCurrentZoo(cbFantasticZooName.getValue());
     }
 }

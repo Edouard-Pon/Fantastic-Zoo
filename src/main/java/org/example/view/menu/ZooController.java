@@ -11,8 +11,10 @@ import org.example.model.data.Data;
 import org.example.model.management.Master;
 import org.example.model.zoo.FantasticZoo;
 import org.example.view.manager.SceneManager;
+import org.example.viewmodel.menu.ZooViewModel;
 
 public class ZooController {
+    private ZooViewModel zooViewModel;
     @FXML
     private ComboBox<String> cbMasterName;
     @FXML
@@ -22,7 +24,9 @@ public class ZooController {
     @FXML
     private Label lblWarning;
 
-    public ZooController() {}
+    public ZooController() {
+        zooViewModel = new ZooViewModel();
+    }
 
     @FXML
     public void navButtonsHandler(ActionEvent event) {
@@ -36,7 +40,7 @@ public class ZooController {
 
     @FXML
     public void updateMastersList(MouseEvent event) {
-        for (Master master : Data.getInstance().getMastersList()) {
+        for (Master master : zooViewModel.getMastersList()) {
             if (cbMasterName.getItems().contains(master.getName())) continue;
             cbMasterName.getItems().add((master).getName());
         }
@@ -48,12 +52,11 @@ public class ZooController {
             lblWarning.setText("Please fill all the fields!");
             return;
         }
-        Data.getInstance().addFantasticZoo(
-                new FantasticZoo(
-                        txtZooName.getText(),
-                        Data.getInstance().getMaster(cbMasterName.getValue()),
-                        Integer.parseInt(txtMaxEnclosuresNumber.getText())
-                ));
+        zooViewModel.addFantasticZoo(
+                txtZooName.getText(),
+                cbMasterName.getValue(),
+                Integer.parseInt(txtMaxEnclosuresNumber.getText()
+            ));
         lblWarning.setText("Zoo created successfully! : " + txtZooName.getText());
         resetAllFields();
     }

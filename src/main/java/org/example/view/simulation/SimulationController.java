@@ -6,14 +6,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.example.model.data.Data;
 import org.example.view.manager.SceneManager;
+import org.example.viewmodel.simulation.SimulationViewModel;
 
 public class SimulationController {
+    private SimulationViewModel viewModel;
     @FXML
     private Label lblWarning;
     @FXML
     private Label lblZooName;
 
-    public SimulationController() {}
+    public SimulationController() {
+        viewModel = new SimulationViewModel();
+    }
 
     public void initialize() {
         initBindings();
@@ -37,7 +41,7 @@ public class SimulationController {
     }
 
     private void bindLblZooName() {
-        lblZooName.textProperty().bind(Data.getInstance().getCurrentZoo().nameProperty());
+        lblZooName.textProperty().bind(viewModel.currentZooNameProperty());
     }
 
     public void updateData() {

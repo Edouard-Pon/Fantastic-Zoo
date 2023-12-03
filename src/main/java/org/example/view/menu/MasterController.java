@@ -6,11 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.example.model.data.Data;
-import org.example.model.management.Master;
 import org.example.view.manager.SceneManager;
+import org.example.viewmodel.menu.MasterViewModel;
 
 public class MasterController {
+    private MasterViewModel masterViewModel;
     @FXML
     private TextField txtMasterName;
     @FXML
@@ -20,7 +20,9 @@ public class MasterController {
     @FXML
     private Label lblWarning;
 
-    public MasterController() {}
+    public MasterController() {
+        masterViewModel = new MasterViewModel();
+    }
 
     @FXML
     public void navButtonsHandler(ActionEvent event) {
@@ -38,12 +40,11 @@ public class MasterController {
             lblWarning.setText("Please fill all the fields!");
             return;
         }
-        Data.getInstance().addMaster(
-                new Master(
-                        txtMasterName.getText(),
-                        cbMasterGender.getValue().equals("Male"),
-                        Integer.parseInt(txtMasterAge.getText())
-                ));
+        masterViewModel.addMaster(
+                txtMasterName.getText(),
+                cbMasterGender.getValue().equals("Male"),
+                Integer.parseInt(txtMasterAge.getText())
+        );
         lblWarning.setText("Master created successfully! : " + txtMasterName.getText());
         resetAllFields();
     }

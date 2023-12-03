@@ -1,5 +1,8 @@
 package org.example.model.zoo;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import org.example.model.creatures.Creature;
 import org.example.model.management.Master;
 import org.example.model.spaces.Enclosure;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FantasticZoo {
-    private String name;
+    private StringProperty name;
     private Master master;
     private int maxEnclosureNumber;
     private ArrayList<Enclosure> enclosureList;
@@ -24,13 +27,13 @@ public class FantasticZoo {
         return creatures;
     }
     public FantasticZoo(String name, Master master, int maxEnclosureNumber) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.master = master;
         this.maxEnclosureNumber = maxEnclosureNumber;
         this.enclosureList = new ArrayList<>();
     }
     public String getName() {
-        return name;
+        return name.get();
     }
 
     // TODO Implement better error handling, requires UI
@@ -43,7 +46,7 @@ public class FantasticZoo {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public Master getMaster() {
@@ -68,5 +71,9 @@ public class FantasticZoo {
 
     public void setEnclosureList(ArrayList<Enclosure> enclosureList) {
         this.enclosureList = enclosureList;
+    }
+
+    public StringProperty nameProperty() {
+        return name;
     }
 }

@@ -75,5 +75,15 @@ public class SceneManager {
         }
     }
 
+    public void showPopup(String fileName) {
+        if (!scenes.containsKey(fileName)) {
+            preloadScene(fileName);
+        } else if (scenes.get(fileName) == null) {
+            System.err.println("Scene " + fileName + " is not loaded");
+        }
+        Stage popUpStage = new Stage();
+        popUpStage.setScene(scenes.get(fileName));
+        popUpStage.show();
+    }
 
 }

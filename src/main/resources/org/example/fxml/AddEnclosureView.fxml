@@ -7,8 +7,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="root" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.simulation.SimulationController">
+<AnchorPane id="root" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.simulation.AddEnclosureController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Enclosure Type" />
       <ComboBox fx:id="cmbEnclosureType" layoutX="14.0" layoutY="30.0" onAction="#handleEnclosureType" prefWidth="150.0">
@@ -35,5 +36,10 @@
       <Label layoutX="356.0" layoutY="94.0" text="Water Salinity" />
       <TextField fx:id="txtEnclosureWaterSalinity" disable="true" layoutX="356.0" layoutY="110.0" />
       <Button fx:id="btnAddEnclosure" layoutX="244.0" layoutY="362.0" mnemonicParsing="false" onAction="#navButtonsHandler" text="Add Enclosure" />
+      <Label fx:id="lblWarning" alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="200.0" prefHeight="30.0" prefWidth="250.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

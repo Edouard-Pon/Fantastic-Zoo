@@ -1,10 +1,8 @@
 package org.example.view.manager;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -86,4 +84,25 @@ public class SceneManager {
         popUpStage.show();
     }
 
+    public void closePopup(String fileName) {
+        if (!scenes.containsKey(fileName)) {
+            System.err.println("Scene " + fileName + " is not loaded");
+        } else {
+            Stage popUpStage = (Stage) scenes.get(fileName).getWindow();
+            popUpStage.close();
+        }
+    }
+
+    public void closeScene(String fileName) {
+        if (!scenes.containsKey(fileName)) {
+            System.err.println("Scene " + fileName + " is not loaded");
+        } else {
+            Stage popUpStage = (Stage) scenes.get(fileName).getWindow();
+            popUpStage.close();
+        }
+    }
+
+    public Object getController(String fileName) {
+        return controllers.get(fileName);
+    }
 }

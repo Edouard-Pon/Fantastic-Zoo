@@ -24,7 +24,7 @@
       </Pane>
       <Pane layoutX="966.0" layoutY="14.0" prefHeight="380.0" prefWidth="300.0" style="-fx-background-color: red;">
          <children>
-            <ListView fx:id="enclosuresListView" prefHeight="380.0" prefWidth="300.0" />
+            <ListView fx:id="lstEnclosures" prefHeight="380.0" prefWidth="300.0" />
          </children>
       </Pane>
       <Button fx:id="btnRemoveEnclosure" layoutX="1126.0" layoutY="423.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="140.0" text="Remove Enclosure" />

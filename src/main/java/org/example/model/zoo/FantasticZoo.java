@@ -2,7 +2,6 @@ package org.example.model.zoo;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import org.example.model.creatures.Creature;
 import org.example.model.management.Master;
 import org.example.model.spaces.Enclosure;

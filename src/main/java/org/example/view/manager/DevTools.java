@@ -1,7 +1,9 @@
 package org.example.view.manager;
 
+import org.example.model.creatures.Dragon;
 import org.example.model.data.Data;
 import org.example.model.management.Master;
+import org.example.model.spaces.Enclosure;
 import org.example.model.zoo.FantasticZoo;
 
 public class DevTools {
@@ -23,5 +25,17 @@ public class DevTools {
     public void createZoo() {
         Master master = Data.getInstance().getMaster("Master Test Name");
         Data.getInstance().addFantasticZoo(new FantasticZoo("Zoo Test Name", master, 3));
+    }
+
+    public void setCurrentZoo() {
+        Data.getInstance().setCurrentZoo(Data.getInstance().getFantasticZoo("Zoo Test Name"));
+    }
+
+    public void createEnclosure() {
+        Data.getInstance().getCurrentZoo().addEnclosure(new Enclosure("Test Enclosure", "Test Area", 3));
+    }
+
+    public void createCreature() {
+        Data.getInstance().getCurrentZoo().getEnclosureByName("Test Enclosure").addCreatures(new Dragon("Dragon Test Name", true, 1, 2, 3));
     }
 }

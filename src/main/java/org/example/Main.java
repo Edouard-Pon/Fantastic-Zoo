@@ -18,6 +18,9 @@ public class Main extends Application {
 
         DevTools.getInstance().createMaster();
         DevTools.getInstance().createZoo();
+        DevTools.getInstance().setCurrentZoo();
+        DevTools.getInstance().createEnclosure();
+        DevTools.getInstance().createCreature();
     }
 
     public static void main(String[] args) {

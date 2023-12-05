@@ -30,7 +30,7 @@
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button disable="true" layoutX="175.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Remove Creature">
+            <Button fx:id="btnRemoveCreature" disable="true" layoutX="175.0" layoutY="14.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="120.0" text="Remove Creature">
                <font>
                   <Font size="11.0" />
                </font>

@@ -22,6 +22,8 @@ public class SimulationController {
     private ListView<String> lstCreatures;
     @FXML
     private Label lblEnclosureName;
+    @FXML
+    private Button btnRemoveCreature;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -55,6 +57,7 @@ public class SimulationController {
             case "btnPopupAddEnclosure" -> SceneManager.getInstance().showPopup("AddEnclosureView");
             case "btnPopupAddCreature" -> SceneManager.getInstance().showPopup("AddCreatureView");
             case "btnViewEnclosure" -> selectEnclosure();
+            case "btnRemoveCreature" -> removeCreature();
 //            case "btnRemoveEnclosure" -> SceneManager.getInstance().showScene("");
 //            case "btnMaintain" -> SceneManager.getInstance().showScene("");
 //            case "btnViewEnclosure" -> SceneManager.getInstance().showScene("");
@@ -90,10 +93,12 @@ public class SimulationController {
 
     private void unlockCreatureControls() {
         btnPopupAddCreature.setDisable(false);
+        btnRemoveCreature.setDisable(false);
     }
 
     private void lockCreatureControls() {
         btnPopupAddCreature.setDisable(true);
+        btnRemoveCreature.setDisable(true);
     }
 
     public void clearFields() {
@@ -101,5 +106,10 @@ public class SimulationController {
         lblWarning.setText("");
         lstEnclosures.getItems().clear();
         lstCreatures.getItems().clear();
+    }
+
+    public void removeCreature() {
+        viewModel.removeCreature(lstCreatures.getSelectionModel().getSelectedItem());
+        updateCreaturesList();
     }
 }

@@ -50,6 +50,21 @@ public class Enclosure {
         numberOfCreatures = 0;
     }
 
+    public void removeCreature(Creature creature) {
+        creaturesList.remove(creature);
+        numberOfCreatures--;
+    }
+
+    public void removeCreatureByName(String name) {
+        for (Creature creature : creaturesList) {
+            if (creature.getName().equals(name)) {
+                creaturesList.remove(creature);
+                numberOfCreatures--;
+                break;
+            }
+        }
+    }
+
     public void feedCreatures() {
         for (Creature creature : creaturesList) {
             creature.eat();

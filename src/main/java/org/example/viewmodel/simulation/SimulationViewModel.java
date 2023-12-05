@@ -84,4 +84,8 @@ public class SimulationViewModel {
     public void setCurrentZoo(FantasticZoo fantasticZoo) {
         Data.getInstance().setCurrentZoo(fantasticZoo);
     }
+
+    public void removeCreature(String selectedCreature) {
+        currentEnclosure.removeCreatureByName(selectedCreature);
+    }
 }

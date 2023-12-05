@@ -37,6 +37,7 @@ public class Enclosure {
         if (creatures != null && maxCreaturesNumber > creaturesList.size()) {
             for (Creature creature : creatures) {
                 if (numberOfCreatures == maxCreaturesNumber) break;
+                if (!creaturesList.isEmpty() && creaturesList.getFirst().getClass() != creature.getClass()) break;
                 numberOfCreatures++;
                 creaturesList.add(creature);
             }

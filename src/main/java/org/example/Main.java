@@ -2,6 +2,7 @@ package org.example;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.example.view.manager.DevTools;
 import org.example.view.manager.SceneManager;
 
 public class Main extends Application {
@@ -14,6 +15,9 @@ public class Main extends Application {
         SceneManager.getInstance().preloadScene("SimulationView");
 
         SceneManager.getInstance().showScene("MainView");
+
+        DevTools.getInstance().createMaster();
+        DevTools.getInstance().createZoo();
     }
 
     public static void main(String[] args) {

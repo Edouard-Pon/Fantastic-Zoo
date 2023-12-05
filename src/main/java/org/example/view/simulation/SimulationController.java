@@ -16,6 +16,12 @@ public class SimulationController {
     private Label lblZooName;
     @FXML
     private ListView<String> lstEnclosures;
+    @FXML
+    private Button btnPopupAddCreature;
+    @FXML
+    private ListView<String> lstCreatures;
+    @FXML
+    private Label lblEnclosureName;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -39,12 +45,16 @@ public class SimulationController {
     public void navButtonsHandler(ActionEvent event) {
         switch (((Button) event.getSource()).getId()) {
             // TODO add handlers for buttons
-            case "btnMainMenu" -> SceneManager.getInstance().showScene("MainView");
-            case "btnPopupAddEnclosure" -> SceneManager.getInstance().showPopup("AddEnclosureView");
-            case "btnAddEnclosure" -> {
-//                createEnclosure();
-                updateEnclosuresList();
+            case "btnMainMenu" -> {
+                viewModel.setCurrentEnclosure(null);
+                viewModel.setCurrentZoo(null);
+                clearFields();
+                lockCreatureControls();
+                SceneManager.getInstance().showScene("MainView");
             }
+            case "btnPopupAddEnclosure" -> SceneManager.getInstance().showPopup("AddEnclosureView");
+            case "btnPopupAddCreature" -> SceneManager.getInstance().showPopup("AddCreatureView");
+            case "btnViewEnclosure" -> selectEnclosure();
 //            case "btnRemoveEnclosure" -> SceneManager.getInstance().showScene("");
 //            case "btnMaintain" -> SceneManager.getInstance().showScene("");
 //            case "btnViewEnclosure" -> SceneManager.getInstance().showScene("");
@@ -59,5 +69,37 @@ public class SimulationController {
         ObservableList<String> enclosuresNames = FXCollections.observableArrayList(viewModel.currentZooEnclosuresNamesList());
         lstEnclosures.setItems(enclosuresNames);
         lstEnclosures.refresh();
+    }
+
+    public void updateCreaturesList() {
+        ObservableList<String> creaturesNames = FXCollections.observableArrayList(viewModel.currentEnclosureCreaturesNamesList());
+        lstCreatures.setItems(creaturesNames);
+        lstCreatures.refresh();
+    }
+
+    private void selectEnclosure() {
+        viewModel.setCurrentEnclosure(lstEnclosures.getSelectionModel().getSelectedItem());
+        if (viewModel.getCurrentEnclosure() == null) {
+            lblWarning.setText("Please select an enclosure!");
+            return;
+        }
+        lblEnclosureName.setText(viewModel.getCurrentEnclosure().getName());
+        unlockCreatureControls();
+        updateCreaturesList();
+    }
+
+    private void unlockCreatureControls() {
+        btnPopupAddCreature.setDisable(false);
+    }
+
+    private void lockCreatureControls() {
+        btnPopupAddCreature.setDisable(true);
+    }
+
+    public void clearFields() {
+        lblEnclosureName.setText("");
+        lblWarning.setText("");
+        lstEnclosures.getItems().clear();
+        lstCreatures.getItems().clear();
     }
 }

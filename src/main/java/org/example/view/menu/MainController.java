@@ -34,6 +34,18 @@ public class MainController {
                     lblWarning.setText("Please select a zoo!");
                     break;
                 }
+                Object controller = SceneManager.getInstance().getController("SimulationView");
+                if (controller != null) {
+                    try {
+                        controller.getClass().getMethod("updateEnclosuresList").invoke(controller);
+                        controller.getClass().getMethod("updateCreaturesList").invoke(controller);
+                    } catch (NoSuchMethodException e) {
+                        System.err.println("No updateEnclosuresList method found for controller " + controller.getClass().getName());
+                    } catch (Exception e) {
+                        System.err.println("Error updating data for controller " + controller.getClass().getName());
+                        e.printStackTrace();
+                    }
+                }
                 SceneManager.getInstance().showScene("SimulationView");
             }
         }

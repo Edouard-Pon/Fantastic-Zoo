@@ -10,13 +10,67 @@
 
 <AnchorPane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.simulation.SimulationController">
    <children>
-      <Pane fx:id="enclosureViewPane" layoutX="14.0" layoutY="54.0" prefHeight="460.0" prefWidth="900.0" style="-fx-background-color: red;" />
+      <Pane fx:id="enclosureViewPane" layoutX="14.0" layoutY="54.0" prefHeight="460.0" prefWidth="900.0" style="-fx-background-color: #afafaf;">
+         <children>
+            <Label fx:id="lblEnclosureName" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <Pane layoutX="14.0" layoutY="526.0" prefHeight="180.0" prefWidth="400.0" style="-fx-background-color: red;">
          <children>
-            <ListView fx:id="creaturesListView" prefHeight="180.0" prefWidth="400.0" />
+            <ListView fx:id="lstCreatures" prefHeight="180.0" prefWidth="400.0" />
          </children>
       </Pane>
-      <Pane layoutX="444.0" layoutY="526.0" prefHeight="180.0" prefWidth="470.0" style="-fx-background-color: red;" />
+      <Pane layoutX="444.0" layoutY="526.0" prefHeight="180.0" prefWidth="470.0">
+         <children>
+            <Button fx:id="btnPopupAddCreature" disable="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="120.0" text="Add Creature">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="175.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Remove Creature">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="336.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="View Creature">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="14.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Feed Creature">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="175.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Move Creature">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="336.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="...">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="...">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="175.0" layoutY="126.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="...">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button disable="true" layoutX="336.0" layoutY="126.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="...">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+         </children></Pane>
       <Pane layoutX="966.0" layoutY="526.0" prefHeight="180.0" prefWidth="300.0" style="-fx-background-color: red;">
          <children>
             <TextArea fx:id="logTextArea" editable="false" prefHeight="180.0" prefWidth="300.0" />

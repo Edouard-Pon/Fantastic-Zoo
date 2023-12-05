@@ -68,6 +68,13 @@ public class FantasticZoo {
         return enclosureList;
     }
 
+    public Enclosure getEnclosureByName(String name) {
+        for (Enclosure enclosure : enclosureList) {
+            if (enclosure.getName().equals(name)) return enclosure;
+        }
+        return null;
+    }
+
     public void setEnclosureList(ArrayList<Enclosure> enclosureList) {
         this.enclosureList = enclosureList;
     }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="root" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.simulation.AddCreatureController">
+   <children>
+      <Label layoutX="24.0" layoutY="24.0" text="Creature Type" />
+      <ComboBox fx:id="cbCreatureType" layoutX="24.0" layoutY="40.0" prefHeight="24.0" prefWidth="171.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Dragon" />
+               <String fx:value="Kraken" />
+               <String fx:value="Lycanthrope" />
+               <String fx:value="Megalodon" />
+               <String fx:value="Nymph" />
+               <String fx:value="Phoenix" />
+               <String fx:value="Siren" />
+               <String fx:value="Unicorn" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Label layoutX="24.0" layoutY="64.0" text="Name" />
+      <TextField fx:id="txtCreatureName" layoutX="24.0" layoutY="80.0" />
+      <Label layoutX="24.0" layoutY="104.0" text="Gender" />
+      <Label layoutX="24.0" layoutY="144.0" text="Weight" />
+      <TextField fx:id="txtCreatureWeight" layoutX="24.0" layoutY="160.0" />
+      <Button fx:id="btnAddCreature" layoutX="248.0" layoutY="362.0" mnemonicParsing="false" onAction="#navButtonsHandler" text="Add Creature" />
+      <Label fx:id="lblWarning" alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="303.0" prefHeight="30.0" prefWidth="250.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbCreatureGender" layoutX="24.0" layoutY="120.0" prefHeight="24.0" prefWidth="171.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Male" />
+               <String fx:value="Female" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Label layoutX="27.0" layoutY="183.0" text="Height" />
+      <TextField fx:id="txtCreatureHeight" layoutX="24.0" layoutY="201.0" />
+      <Label layoutX="27.0" layoutY="225.0" text="Age" />
+      <TextField fx:id="txtCreatureAge" layoutX="24.0" layoutY="243.0" />
+      <Label layoutX="301.0" layoutY="72.0" text="Enclosure" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="301.0" layoutY="32.0" prefHeight="16.0" prefWidth="171.0" text="Enclosure" textAlignment="CENTER" />
+      <ComboBox fx:id="cbCreatureEnclosure" layoutX="301.0" layoutY="88.0" onMouseClicked="#updateEnclosuresList" prefHeight="24.0" prefWidth="171.0" />
+   </children>
+</AnchorPane>

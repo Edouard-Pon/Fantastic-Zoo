@@ -112,6 +112,8 @@ public class SimulationViewModel {
         stats.put("Age", String.valueOf(creature.getAge()));
         stats.put("Type", creature.getClass().getSimpleName());
 
+        if (creature.isSleeping()) stats.put("Sleep", "Sleeping");
+        else stats.put("Sleep", "Not sleeping");
         if (creature.isGender()) stats.put("Gender", "Male");
         else stats.put("Gender", "Female");
         if (creature.isHunger()) stats.put("Hunger", "Hungry");

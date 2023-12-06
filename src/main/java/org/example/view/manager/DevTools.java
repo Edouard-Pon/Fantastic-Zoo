@@ -37,6 +37,6 @@ public class DevTools {
 
     public void createCreature() {
         String creatureNumber = String.valueOf(Data.getInstance().getCurrentZoo().getNumberOfCreatures());
-        Data.getInstance().getCurrentZoo().getEnclosureByName("Test Enclosure").addCreatures(new Dragon("Dragon Test Name " + creatureNumber, true, 1, 2, 3));
+        Data.getInstance().getCurrentZoo().getEnclosureByName("Test Enclosure").addCreatures(new Dragon("Dragon Test Name " + creatureNumber, true, 1, 2, 0));
     }
 }

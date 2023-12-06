@@ -1,5 +1,10 @@
 package org.example.model.creatures;
 
+import org.example.model.tasks.creatures.Aging;
+import org.example.model.tasks.creatures.Health;
+import org.example.model.tasks.creatures.Hunger;
+import org.example.model.tasks.creatures.Sleep;
+
 public class Creature {
     private String name;
     private boolean gender;
@@ -19,6 +24,7 @@ public class Creature {
         this.hunger = false;
         this.sleeping = false;
         this.health = true;
+        startTasks();
     }
 
     @Override
@@ -127,5 +133,19 @@ public class Creature {
 
     public void setHealth(boolean health) {
         this.health = health;
+    }
+
+    public void startTasks() {
+        Thread aging = new Thread(new Aging(this));
+        aging.start();
+
+        Thread hunger = new Thread(new Hunger(this));
+        hunger.start();
+
+        Thread health = new Thread(new Health(this));
+        health.start();
+
+        Thread sleep = new Thread(new Sleep(this));
+        sleep.start();
     }
 }

@@ -1,6 +1,7 @@
 package org.example.model.spaces;
 
 import org.example.model.creatures.Creature;
+import org.example.model.tasks.enclosures.Cleanliness;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ public class Enclosure {
         this.cleanlinessLevel = true;
         this.numberOfCreatures = 0;
         this.creaturesList = new ArrayList<>();
+        startTasks();
     }
 
     // TODO Finish the getCharacteristics
@@ -116,5 +118,10 @@ public class Enclosure {
             if (creature.getName().equals(name)) return creature;
         }
         return null;
+    }
+
+    private void startTasks() {
+        Thread cleanliness = new Thread(new Cleanliness(this));
+        cleanliness.start();
     }
 }

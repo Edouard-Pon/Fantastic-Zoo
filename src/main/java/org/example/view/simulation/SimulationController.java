@@ -72,6 +72,8 @@ public class SimulationController {
     private Label lblEnclosureCreaturesNumber;
     @FXML
     private Label lblEnclosureRoofStatus;
+    @FXML
+    private Label lblCreatureSleep;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -210,6 +212,7 @@ public class SimulationController {
         lblCreatureAge.setText("Age: " + stats.get("Age"));
         lblCreatureHunger.setText("Hunger: " + stats.get("Hunger"));
         lblCreatureHealth.setText("Health: " + stats.get("Health"));
+        lblCreatureSleep.setText("Sleep: " + stats.get("Sleep"));
     }
 
     private void clearCreatureStats() {
@@ -221,6 +224,7 @@ public class SimulationController {
         lblCreatureAge.setText("");
         lblCreatureHunger.setText("");
         lblCreatureHealth.setText("");
+        lblCreatureSleep.setText("");
     }
 
     private void showEnclosureStats() {

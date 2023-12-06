@@ -62,7 +62,7 @@ public class EnclosureTest {
 
         assertEquals("Lycanthropes Enclosure", e1.getCharacteristics().get("Name"));
         assertEquals("150x150", e1.getCharacteristics().get("Area"));
-        assertEquals("true", e1.getCharacteristics().get("Cleanliness Level"));
+        assertEquals("Clean", e1.getCharacteristics().get("Cleanliness Level"));
     }
 
 }

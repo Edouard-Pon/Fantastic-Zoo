@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.simulation.SimulationController">
+<AnchorPane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.simulation.SimulationController">
    <children>
       <Pane fx:id="paneEnclosure" layoutX="14.0" layoutY="54.0" prefHeight="460.0" prefWidth="900.0" style="-fx-background-color: #afafaf;">
          <children>
@@ -41,6 +41,7 @@
             <Label fx:id="lblEnclosureCleanlinessLevel" layoutX="668.0" layoutY="313.0" prefHeight="25.0" prefWidth="218.0" />
             <Label fx:id="lblEnclosureRoofStatus" layoutX="450.0" layoutY="421.0" prefHeight="25.0" prefWidth="218.0" />
             <Label fx:id="lblEnclosureWaterSalinity1" layoutX="668.0" layoutY="421.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblCreatureSleep" layoutX="450.0" layoutY="222.0" prefHeight="25.0" prefWidth="436.0" />
          </children></Pane>
       <Pane layoutX="14.0" layoutY="526.0" prefHeight="180.0" prefWidth="400.0" style="-fx-background-color: red;">
          <children>

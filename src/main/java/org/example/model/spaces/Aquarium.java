@@ -3,6 +3,8 @@ package org.example.model.spaces;
 import org.example.model.creatures.Creature;
 import org.example.model.abilities.Swimming;
 
+import java.util.HashMap;
+
 public class Aquarium extends Enclosure {
     private int depth; // TODO Replace with better solution
     private int defaultDepth;
@@ -64,5 +66,15 @@ public class Aquarium extends Enclosure {
 
     public void setWaterSalinity(double waterSalinity) {
         this.waterSalinity = waterSalinity;
+    }
+
+    @Override
+    public HashMap<String, String> getCharacteristics() {
+        HashMap<String, String> characteristics = super.getCharacteristics();
+
+        characteristics.put("Depth", String.valueOf(depth));
+        characteristics.put("WaterSalinity", String.valueOf(waterSalinity));
+
+        return characteristics;
     }
 }

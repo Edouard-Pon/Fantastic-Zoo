@@ -1,17 +1,22 @@
 package org.example.viewmodel.simulation;
 
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
 import org.example.model.creatures.*;
 import org.example.model.data.Data;
+import org.example.model.data.DataImages;
 import org.example.model.spaces.Aquarium;
 import org.example.model.spaces.Aviary;
 import org.example.model.spaces.Enclosure;
 import org.example.model.zoo.FantasticZoo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SimulationViewModel {
     private Enclosure currentEnclosure;
+    private Creature currentCreature;
 
     public SimulationViewModel() {}
 
@@ -85,7 +90,47 @@ public class SimulationViewModel {
         Data.getInstance().setCurrentZoo(fantasticZoo);
     }
 
+    public void setCurrentCreature(String creatureName) {
+        currentCreature = currentEnclosure.getCreatureByName(creatureName);
+    }
+
     public void removeCreature(String selectedCreature) {
         currentEnclosure.removeCreatureByName(selectedCreature);
+    }
+
+    public Image getCurrentCreatureImage() {
+        return DataImages.getInstance().getImage(currentCreature.getClass().getSimpleName().toLowerCase());
+    }
+
+    public Map<String, String> getCreatureStats(Creature creature) {
+        if (creature == null) return null;
+        Map<String, String> stats = new HashMap<>();
+
+        stats.put("Name", creature.getName());
+        stats.put("Weight", String.valueOf(creature.getWeight()));
+        stats.put("Height", String.valueOf(creature.getHeight()));
+        stats.put("Age", String.valueOf(creature.getAge()));
+        stats.put("Type", creature.getClass().getSimpleName());
+
+        if (creature.isGender()) stats.put("Gender", "Male");
+        else stats.put("Gender", "Female");
+        if (creature.isHunger()) stats.put("Hunger", "Hungry");
+        else stats.put("Hunger", "Not hungry");
+        if (creature.isSleeping()) stats.put("Sleeping", "Sleeping");
+        else stats.put("Sleeping", "Not sleeping");
+        if (creature.isHealth()) stats.put("Health", "Healthy");
+        else stats.put("Health", "Not healthy");
+
+        return stats;
+    }
+
+    public Creature getCurrentCreature() {
+        return currentCreature;
+    }
+
+    public Map<String, String> getEnclosureStats(Enclosure currentEnclosure) {
+        if (currentEnclosure == null) return null;
+
+        return currentEnclosure.getCharacteristics();
     }
 }

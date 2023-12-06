@@ -16,6 +16,9 @@ public class Creature {
         this.weight = weight;
         this.height = height;
         this.age = age;
+        this.hunger = false;
+        this.sleeping = false;
+        this.health = true;
     }
 
     @Override

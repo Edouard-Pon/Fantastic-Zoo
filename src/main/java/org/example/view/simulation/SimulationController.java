@@ -5,8 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import org.example.view.manager.SceneManager;
 import org.example.viewmodel.simulation.SimulationViewModel;
+
+import java.util.Arrays;
+import java.util.Map;
 
 public class SimulationController {
     private SimulationViewModel viewModel;
@@ -24,6 +30,48 @@ public class SimulationController {
     private Label lblEnclosureName;
     @FXML
     private Button btnRemoveCreature;
+    @FXML
+    private Pane paneEnclosure;
+    @FXML
+    private Pane paneCreatureImage;
+    @FXML
+    private Button btnViewCreature;
+    @FXML
+    private Label lblCreatureName;
+    @FXML
+    private Label lblCreatureType;
+    @FXML
+    private Label lblCreatureGender;
+    @FXML
+    private Label lblCreatureWeight;
+    @FXML
+    private Label lblCreatureHeight;
+    @FXML
+    private Label lblCreatureAge;
+    @FXML
+    private Label lblCreatureHunger;
+    @FXML
+    private Label lblCreatureHealth;
+    @FXML
+    private Label lblCreatureMessage;
+    @FXML
+    private Label lblEnclosureType;
+    @FXML
+    private Label lblEnclosureArea;
+    @FXML
+    private Label lblEnclosureMaxCreatures;
+    @FXML
+    private Label lblEnclosureHeight;
+    @FXML
+    private Label lblEnclosureDepth;
+    @FXML
+    private Label lblEnclosureWaterSalinity;
+    @FXML
+    private Label lblEnclosureCleanlinessLevel;
+    @FXML
+    private Label lblEnclosureCreaturesNumber;
+    @FXML
+    private Label lblEnclosureRoofStatus;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -56,8 +104,15 @@ public class SimulationController {
             }
             case "btnPopupAddEnclosure" -> SceneManager.getInstance().showPopup("AddEnclosureView");
             case "btnPopupAddCreature" -> SceneManager.getInstance().showPopup("AddCreatureView");
-            case "btnViewEnclosure" -> selectEnclosure();
+            case "btnViewEnclosure" -> {
+                selectEnclosure();
+                showEnclosureStats();
+            }
             case "btnRemoveCreature" -> removeCreature();
+            case "btnViewCreature" -> {
+                showCreature();
+                showCreatureStats();
+            }
 //            case "btnRemoveEnclosure" -> SceneManager.getInstance().showScene("");
 //            case "btnMaintain" -> SceneManager.getInstance().showScene("");
 //            case "btnViewEnclosure" -> SceneManager.getInstance().showScene("");
@@ -72,12 +127,15 @@ public class SimulationController {
         ObservableList<String> enclosuresNames = FXCollections.observableArrayList(viewModel.currentZooEnclosuresNamesList());
         lstEnclosures.setItems(enclosuresNames);
         lstEnclosures.refresh();
+        clearEnclosureStats();
     }
 
     public void updateCreaturesList() {
         ObservableList<String> creaturesNames = FXCollections.observableArrayList(viewModel.currentEnclosureCreaturesNamesList());
         lstCreatures.setItems(creaturesNames);
         lstCreatures.refresh();
+        paneCreatureImage.getChildren().clear();
+        clearCreatureStats();
     }
 
     private void selectEnclosure() {
@@ -94,11 +152,13 @@ public class SimulationController {
     private void unlockCreatureControls() {
         btnPopupAddCreature.setDisable(false);
         btnRemoveCreature.setDisable(false);
+        btnViewCreature.setDisable(false);
     }
 
     private void lockCreatureControls() {
         btnPopupAddCreature.setDisable(true);
         btnRemoveCreature.setDisable(true);
+        btnViewCreature.setDisable(true);
     }
 
     public void clearFields() {
@@ -108,8 +168,102 @@ public class SimulationController {
         lstCreatures.getItems().clear();
     }
 
-    public void removeCreature() {
+    private void removeCreature() {
+        if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select a creature!");
+            return;
+        }
         viewModel.removeCreature(lstCreatures.getSelectionModel().getSelectedItem());
         updateCreaturesList();
+    }
+
+    private void showCreature() {
+        if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select a creature!");
+            return;
+        }
+        viewModel.setCurrentCreature(lstCreatures.getSelectionModel().getSelectedItem());
+
+        Image image = viewModel.getCurrentCreatureImage();
+        ImageView imageView = new ImageView(image);
+
+        imageView.setFitHeight(300);
+        imageView.setFitWidth(300);
+        imageView.setPreserveRatio(true);
+
+        paneCreatureImage.getChildren().clear();
+        paneCreatureImage.getChildren().add(imageView);
+    }
+
+    private void showCreatureStats() {
+        if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select a creature!");
+            return;
+        }
+        Map<String, String> stats = viewModel.getCreatureStats(viewModel.getCurrentCreature());
+
+        lblCreatureName.setText("Name: " + stats.get("Name"));
+        lblCreatureType.setText("Type: " + stats.get("Type"));
+        lblCreatureGender.setText("Gender: " + stats.get("Gender"));
+        lblCreatureWeight.setText("Weight: " + stats.get("Weight"));
+        lblCreatureHeight.setText("Height: " + stats.get("Height"));
+        lblCreatureAge.setText("Age: " + stats.get("Age"));
+        lblCreatureHunger.setText("Hunger: " + stats.get("Hunger"));
+        lblCreatureHealth.setText("Health: " + stats.get("Health"));
+    }
+
+    private void clearCreatureStats() {
+        lblCreatureName.setText("");
+        lblCreatureType.setText("");
+        lblCreatureGender.setText("");
+        lblCreatureWeight.setText("");
+        lblCreatureHeight.setText("");
+        lblCreatureAge.setText("");
+        lblCreatureHunger.setText("");
+        lblCreatureHealth.setText("");
+    }
+
+    private void showEnclosureStats() {
+        if (lstEnclosures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select an enclosure!");
+            return;
+        }
+        clearEnclosureStats();
+
+        Map<String, String> stats = viewModel.getEnclosureStats(viewModel.getCurrentEnclosure());
+
+        lblEnclosureType.setText("Type: " + stats.get("Type"));
+        lblEnclosureArea.setText("Area: " + stats.get("Area"));
+        lblEnclosureMaxCreatures.setText("Max Creatures: " + stats.get("MaxCreaturesNumber"));
+        lblEnclosureCreaturesNumber.setText("Creatures Inside: " + stats.get("CreaturesCount"));
+        if (stats.get("Type").equals("Aviary")) {
+            lblEnclosureHeight.setText("Height: " + stats.get("Height"));
+            lblEnclosureRoofStatus.setText("Roof Status: " + stats.get("RoofStatus"));
+        }
+        if (stats.get("Type").equals("Aquarium")) {
+            lblEnclosureDepth.setText("Depth: " + stats.get("Depth"));
+            lblEnclosureWaterSalinity.setText("Water Salinity: " + stats.get("WaterSalinity"));
+        }
+        lblEnclosureCleanlinessLevel.setText("Cleanliness Level: " + stats.get("CleanlinessLevel"));
+    }
+
+    private void clearEnclosureStats() {
+        lblEnclosureType.setText("");
+        lblEnclosureArea.setText("");
+        lblEnclosureMaxCreatures.setText("");
+        lblEnclosureHeight.setText("");
+        lblEnclosureDepth.setText("");
+        lblEnclosureWaterSalinity.setText("");
+        lblEnclosureCleanlinessLevel.setText("");
+        lblEnclosureCreaturesNumber.setText("");
+        lblEnclosureRoofStatus.setText("");
+    }
+
+    public void showCreatureMessage(String message) {
+        lblCreatureMessage.setText(message);
+    }
+
+    public void clearCreatureMessage() {
+        lblCreatureMessage.setText("");
     }
 }

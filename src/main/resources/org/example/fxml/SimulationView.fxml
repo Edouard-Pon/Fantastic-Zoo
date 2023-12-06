@@ -10,13 +10,37 @@
 
 <AnchorPane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.simulation.SimulationController">
    <children>
-      <Pane fx:id="enclosureViewPane" layoutX="14.0" layoutY="54.0" prefHeight="460.0" prefWidth="900.0" style="-fx-background-color: #afafaf;">
+      <Pane fx:id="paneEnclosure" layoutX="14.0" layoutY="54.0" prefHeight="460.0" prefWidth="900.0" style="-fx-background-color: #afafaf;">
          <children>
             <Label fx:id="lblEnclosureName" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label fx:id="lblCreatureType" layoutX="450.0" layoutY="22.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureName" layoutX="450.0" layoutY="47.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureGender" layoutX="450.0" layoutY="72.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureWeight" layoutX="450.0" layoutY="97.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureHeight" layoutX="450.0" layoutY="122.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureAge" layoutX="450.0" layoutY="147.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureHunger" layoutX="450.0" layoutY="172.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureHealth" layoutX="450.0" layoutY="197.0" prefHeight="25.0" prefWidth="436.0" />
+            <Pane fx:id="paneCreatureImage" layoutX="64.0" layoutY="72.0" prefHeight="300.0" prefWidth="300.0" />
+            <Label fx:id="lblCreatureMessage" alignment="CENTER" layoutX="64.0" layoutY="406.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEnclosureDepth" layoutX="450.0" layoutY="392.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureWaterSalinity" layoutX="668.0" layoutY="392.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureCreaturesNumber" layoutX="450.0" layoutY="365.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureHeight" layoutX="668.0" layoutY="365.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureArea" layoutX="450.0" layoutY="340.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureMaxCreatures" layoutX="668.0" layoutY="340.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureType" layoutX="450.0" layoutY="313.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureCleanlinessLevel" layoutX="668.0" layoutY="313.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureRoofStatus" layoutX="450.0" layoutY="421.0" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="lblEnclosureWaterSalinity1" layoutX="668.0" layoutY="421.0" prefHeight="25.0" prefWidth="218.0" />
          </children></Pane>
       <Pane layoutX="14.0" layoutY="526.0" prefHeight="180.0" prefWidth="400.0" style="-fx-background-color: red;">
          <children>
@@ -35,7 +59,7 @@
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button disable="true" layoutX="336.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="View Creature">
+            <Button fx:id="btnViewCreature" disable="true" layoutX="336.0" layoutY="14.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="120.0" text="View Creature">
                <font>
                   <Font size="11.0" />
                </font>

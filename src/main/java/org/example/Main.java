@@ -2,6 +2,7 @@ package org.example;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.example.model.data.DataImages;
 import org.example.view.manager.DevTools;
 import org.example.view.manager.SceneManager;
 
@@ -13,6 +14,8 @@ public class Main extends Application {
         SceneManager.getInstance().preloadScene("MasterView");
         SceneManager.getInstance().preloadScene("ZooView");
         SceneManager.getInstance().preloadScene("SimulationView");
+
+        DataImages.getInstance().loadImages();
 
         SceneManager.getInstance().showScene("MainView");
 

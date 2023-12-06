@@ -25,10 +25,16 @@ public class Enclosure {
     // TODO Finish the getCharacteristics
     public HashMap<String, String> getCharacteristics() {
         HashMap<String, String> characteristics = new HashMap<String, String>();
+
         characteristics.put("Name", name);
         characteristics.put("Area", area);
-        characteristics.put("Cleanliness Level", String.valueOf(cleanlinessLevel));
-        characteristics.put("Creatures inside",creaturesList.toString());
+        if (cleanlinessLevel) characteristics.put("CleanlinessLevel", "Clean");
+        else characteristics.put("CleanlinessLevel", "Dirty");
+        characteristics.put("CreaturesInside", creaturesList.toString());
+        characteristics.put("CreaturesCount", String.valueOf(numberOfCreatures));
+        characteristics.put("MaxCreaturesNumber", String.valueOf(maxCreaturesNumber));
+        characteristics.put("Type", this.getClass().getSimpleName());
+
         return characteristics;
     }
 
@@ -103,5 +109,12 @@ public class Enclosure {
 
     public void setCleanlinessLevel(boolean cleanlinessLevel) {
         this.cleanlinessLevel = cleanlinessLevel;
+    }
+
+    public Creature getCreatureByName(String name) {
+        for (Creature creature : creaturesList) {
+            if (creature.getName().equals(name)) return creature;
+        }
+        return null;
     }
 }

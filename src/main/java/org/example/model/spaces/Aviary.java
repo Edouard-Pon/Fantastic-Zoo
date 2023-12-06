@@ -3,6 +3,8 @@ package org.example.model.spaces;
 import org.example.model.creatures.Creature;
 import org.example.model.abilities.Flying;
 
+import java.util.HashMap;
+
 public class Aviary extends Enclosure {
     private int height;
     private boolean roofBroken; // TODO Replace with Enum and rename it to roofStatus
@@ -50,5 +52,16 @@ public class Aviary extends Enclosure {
 
     public void setRoofBroken(boolean roofBroken) {
         this.roofBroken = roofBroken;
+    }
+
+    @Override
+    public HashMap<String, String> getCharacteristics() {
+        HashMap<String, String> characteristics = super.getCharacteristics();
+
+        characteristics.put("Height", String.valueOf(height));
+        if (roofBroken) characteristics.put("RoofStatus", "Broken");
+        else characteristics.put("RoofStatus", "Fixed");
+
+        return characteristics;
     }
 }

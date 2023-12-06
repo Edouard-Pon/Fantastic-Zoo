@@ -1,5 +1,7 @@
 package org.example.model.tasks.enclosures;
 
+import javafx.application.Platform;
+import org.example.model.data.Data;
 import org.example.model.spaces.Enclosure;
 
 public class Cleanliness implements Runnable {
@@ -20,6 +22,7 @@ public class Cleanliness implements Runnable {
                 if (enclosure.cleanlinessLevel()) {
                     Thread.sleep(30000);
                     enclosure.setCleanlinessLevel(false);
+                    Platform.runLater(() -> Data.getInstance().addLogMessage(enclosure.getName() + " is now dirty."));
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

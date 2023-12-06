@@ -1,6 +1,8 @@
 package org.example.view.simulation;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +13,6 @@ import javafx.scene.layout.Pane;
 import org.example.view.manager.SceneManager;
 import org.example.viewmodel.simulation.SimulationViewModel;
 
-import java.util.Arrays;
 import java.util.Map;
 
 public class SimulationController {
@@ -74,6 +75,8 @@ public class SimulationController {
     private Label lblEnclosureRoofStatus;
     @FXML
     private Label lblCreatureSleep;
+    @FXML
+    private TextArea txtLogMessages;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -87,6 +90,7 @@ public class SimulationController {
     private void initBindings() {
         // TODO remove this if not needed
 //        bindLblZooName();
+        bindTxtLogMessages();
     }
 
     public void updateData() {
@@ -123,6 +127,18 @@ public class SimulationController {
 
     private void bindLblZooName() {
         lblZooName.textProperty().bind(viewModel.currentZooNameProperty());
+    }
+
+    private void bindTxtLogMessages() {
+        viewModel.logMessagesProperty().addListener((ListChangeListener.Change<? extends String> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    for (String item : change.getAddedSubList()) {
+                        txtLogMessages.appendText(item + "\n");
+                    }
+                }
+            }
+        });
     }
 
     public void updateEnclosuresList() {

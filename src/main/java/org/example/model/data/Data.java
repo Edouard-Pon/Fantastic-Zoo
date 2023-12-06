@@ -1,20 +1,27 @@
 package org.example.model.data;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.example.model.management.Master;
 import org.example.model.zoo.FantasticZoo;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Data {
     private static Data instance = null;
     private ArrayList<Master> mastersList;
     private ArrayList<FantasticZoo> fantasticZoosList;
     private FantasticZoo currentZoo;
+    private ObservableList logMessages;
 
     private Data() {
         mastersList = new ArrayList<>();
         fantasticZoosList = new ArrayList<>();
         currentZoo = null;
+        logMessages = FXCollections.observableArrayList(new CopyOnWriteArrayList<>());
     }
 
     public static Data getInstance() {
@@ -64,5 +71,13 @@ public class Data {
 
     public FantasticZoo getCurrentZoo() {
         return currentZoo;
+    }
+
+    public void addLogMessage(String message) {
+        logMessages.add(message);
+    }
+
+    public ObservableList<String> logMessagesProperty() {
+        return logMessages;
     }
 }

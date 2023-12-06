@@ -1,6 +1,7 @@
 package org.example.viewmodel.simulation;
 
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import org.example.model.creatures.*;
 import org.example.model.data.Data;
@@ -10,6 +11,7 @@ import org.example.model.spaces.Aviary;
 import org.example.model.spaces.Enclosure;
 import org.example.model.zoo.FantasticZoo;
 
+import java.awt.dnd.DropTarget;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -134,5 +136,9 @@ public class SimulationViewModel {
         if (currentEnclosure == null) return null;
 
         return currentEnclosure.getCharacteristics();
+    }
+
+    public ObservableList<String> logMessagesProperty() {
+        return Data.getInstance().logMessagesProperty();
     }
 }

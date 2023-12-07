@@ -163,4 +163,11 @@ public class SimulationViewModel {
         creature.feed();
         Data.getInstance().addLogMessage(creature.getName() + " is fed!");
     }
+
+    public void maintainEnclosure(String enclosureName) {
+        Enclosure enclosure = Data.getInstance().getCurrentZoo().getEnclosureByName(enclosureName);
+        if (enclosure == null) return;
+        if (!enclosure.maintain()) return;
+        Data.getInstance().addLogMessage(enclosure.getName() + " is maintained!");
+    }
 }

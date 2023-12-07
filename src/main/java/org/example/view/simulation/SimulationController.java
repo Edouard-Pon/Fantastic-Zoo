@@ -129,7 +129,7 @@ public class SimulationController {
                 }
             }
             case "btnFeedCreature" -> feedCreature();
-//            case "btnMaintain" -> SceneManager.getInstance().showScene("");
+            case "btnMaintainEnclosure" -> maintainEnclosure();
 //            case "btnViewEnclosure" -> SceneManager.getInstance().showScene("");
         }
     }
@@ -324,6 +324,15 @@ public class SimulationController {
             return;
         }
         viewModel.feedCreature(lstCreatures.getSelectionModel().getSelectedItem());
+        updateStats();
+    }
+
+    private void maintainEnclosure() {
+        if (lstEnclosures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select an enclosure!");
+            return;
+        }
+        viewModel.maintainEnclosure(lstEnclosures.getSelectionModel().getSelectedItem());
         updateStats();
     }
 }

@@ -21,11 +21,10 @@ public class Aviary extends Enclosure {
     }
 
     @Override
-    public void maintain() {
-        if (!super.isClean() && super.getCreaturesList().isEmpty()) {
-            super.maintain();
-            isRoofBroken = false;
-        }
+    public boolean maintain() {
+        if (!super.maintain()) return false;
+        isRoofBroken = false;
+        return true;
     }
 
     @Override

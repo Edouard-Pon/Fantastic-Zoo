@@ -109,7 +109,7 @@
       <Button fx:id="btnRemoveEnclosure" layoutX="1126.0" layoutY="423.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="140.0" text="Remove Enclosure" />
       <Button fx:id="btnViewEnclosure" layoutX="1126.0" layoutY="474.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="140.0" text="View Enclosure" />
       <Button fx:id="btnPopupAddEnclosure" layoutX="966.0" layoutY="423.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="140.0" text="Add Enclosure" />
-      <Button fx:id="btnMaintain" layoutX="966.0" layoutY="474.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="140.0" text="Maintain" />
+      <Button fx:id="btnMaintainEnclosure" layoutX="966.0" layoutY="474.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefHeight="40.0" prefWidth="140.0" text="Maintain" />
       <Button fx:id="btnMainMenu" layoutX="14.0" layoutY="14.0" minHeight="30.0" mnemonicParsing="false" onAction="#navButtonsHandler" prefWidth="150.0" text="Main Menu" />
       <Label fx:id="lblWarning" alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="14.0" prefHeight="30.0" prefWidth="250.0">
          <font>

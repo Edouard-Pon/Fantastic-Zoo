@@ -1,6 +1,7 @@
 package org.example.model.spaces;
 
 import org.example.model.creatures.Creature;
+import org.example.model.data.Data;
 import org.example.model.tasks.TaskManager;
 import org.example.model.tasks.enclosures.Cleanliness;
 
@@ -84,10 +85,13 @@ public class Enclosure {
         }
     }
 
-    public void maintain() {
-        if (!isClean && creaturesList.isEmpty()) {
-            isClean = true;
+    public boolean maintain() {
+        if (!creaturesList.isEmpty()) {
+            Data.getInstance().addLogMessage("Enclosure " + name + " is not empty. Cannot maintain.");
+            return false;
         }
+        isClean = true;
+        return true;
     }
 
     public String getName() {

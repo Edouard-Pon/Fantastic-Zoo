@@ -27,12 +27,11 @@ public class Aquarium extends Enclosure {
 
     // TODO Update the depth and water salinity check
     @Override
-    public void maintain() {
-        if (!super.isClean() && super.getCreaturesList().isEmpty()) {
-            super.maintain();
-            waterSalinity = defaultWaterSalinity;
-            depth = defaultDepth;
-        }
+    public boolean maintain() {
+        if (!super.maintain()) return false;
+        waterSalinity = defaultWaterSalinity;
+        depth = defaultDepth;
+        return true;
     }
 
     @Override

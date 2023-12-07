@@ -44,16 +44,17 @@ public class FantasticZoo {
         this.enclosureList.add(enclosure);
     }
 
-    public void removeEnclosure(Enclosure enclosure) {
+    public boolean removeEnclosure(Enclosure enclosure) {
         if (enclosureList.isEmpty()) {
             System.out.println("There are no enclosures!");
-            return;
+            return false;
         }
         if (enclosure.getNumberOfCreatures() != 0) {
             System.out.println("The enclosure is not empty!");
-            return;
+            return false;
         }
         this.enclosureList.remove(enclosure);
+        return true;
     }
 
     public void setName(String name) {

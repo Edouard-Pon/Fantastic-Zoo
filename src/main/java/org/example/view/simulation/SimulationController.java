@@ -119,7 +119,13 @@ public class SimulationController {
                 showCreature();
                 showCreatureStats();
             }
-//            case "btnRemoveEnclosure" -> SceneManager.getInstance().showScene("");
+            case "btnRemoveEnclosure" -> {
+                if (removeEnclosure()) {
+                    clearEnclosureStats();
+                    clearCreatureStats();
+                    lockCreatureControls();
+                }
+            }
 //            case "btnMaintain" -> SceneManager.getInstance().showScene("");
 //            case "btnViewEnclosure" -> SceneManager.getInstance().showScene("");
         }
@@ -196,6 +202,16 @@ public class SimulationController {
         updateCreaturesList();
     }
 
+    private boolean removeEnclosure() {
+        if (lstEnclosures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select an enclosure!");
+            return false;
+        }
+        if (!viewModel.removeEnclosure(lstEnclosures.getSelectionModel().getSelectedItem())) return false;
+        updateEnclosuresList();
+        return true;
+    }
+
     private void showCreature() {
         if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select a creature!");
@@ -250,6 +266,8 @@ public class SimulationController {
             return;
         }
         clearEnclosureStats();
+
+        if (viewModel.getCurrentEnclosure() == null) return;
 
         Map<String, String> stats = viewModel.getEnclosureStats(viewModel.getCurrentEnclosure());
 

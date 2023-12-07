@@ -142,4 +142,17 @@ public class SimulationViewModel {
     public ObservableList<String> logMessagesProperty() {
         return Data.getInstance().logMessagesProperty();
     }
+
+    public boolean removeEnclosure(String selectedItem) {
+        Enclosure enclosure = Data.getInstance().getCurrentZoo().getEnclosureByName(selectedItem);
+        if (currentEnclosure == enclosure) setCurrentEnclosure(null);
+
+        if (!Data.getInstance().getCurrentZoo().removeEnclosure(enclosure)) {
+            Data.getInstance().addLogMessage("Enclosure " + enclosure.getName() + " is not empty!");
+            return false;
+        }
+        enclosure.stopTasks();
+        Data.getInstance().addLogMessage("Enclosure " + enclosure.getName() + " removed!");
+        return true;
+    }
 }

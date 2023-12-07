@@ -119,7 +119,7 @@ public class SimulationViewModel {
         else stats.put("Sleep", "Not sleeping");
         if (creature.isGender()) stats.put("Gender", "Male");
         else stats.put("Gender", "Female");
-        if (creature.isHunger()) stats.put("Hunger", "Hungry");
+        if (creature.isHungry()) stats.put("Hunger", "Hungry");
         else stats.put("Hunger", "Not hungry");
         if (creature.isSleeping()) stats.put("Sleeping", "Sleeping");
         else stats.put("Sleeping", "Not sleeping");
@@ -154,5 +154,13 @@ public class SimulationViewModel {
         enclosure.stopTasks();
         Data.getInstance().addLogMessage("Enclosure " + enclosure.getName() + " removed!");
         return true;
+    }
+
+    public void feedCreature(String creatureName) {
+        Creature creature = currentEnclosure.getCreatureByName(creatureName);
+        if (creature == null) return;
+        if (!creature.isHungry()) return;
+        creature.feed();
+        Data.getInstance().addLogMessage(creature.getName() + " is fed!");
     }
 }

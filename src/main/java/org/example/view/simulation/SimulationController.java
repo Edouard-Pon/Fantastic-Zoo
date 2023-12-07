@@ -77,6 +77,8 @@ public class SimulationController {
     private Label lblCreatureSleep;
     @FXML
     private TextArea txtLogMessages;
+    @FXML
+    private Button btnFeedCreature;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -126,6 +128,7 @@ public class SimulationController {
                     lockCreatureControls();
                 }
             }
+            case "btnFeedCreature" -> feedCreature();
 //            case "btnMaintain" -> SceneManager.getInstance().showScene("");
 //            case "btnViewEnclosure" -> SceneManager.getInstance().showScene("");
         }
@@ -178,12 +181,14 @@ public class SimulationController {
         btnPopupAddCreature.setDisable(false);
         btnRemoveCreature.setDisable(false);
         btnViewCreature.setDisable(false);
+        btnFeedCreature.setDisable(false);
     }
 
     private void lockCreatureControls() {
         btnPopupAddCreature.setDisable(true);
         btnRemoveCreature.setDisable(true);
         btnViewCreature.setDisable(true);
+        btnFeedCreature.setDisable(true);
     }
 
     public void clearFields() {
@@ -311,5 +316,14 @@ public class SimulationController {
         showEnclosureStats();
         showCreature();
         showCreatureStats();
+    }
+
+    private void feedCreature() {
+        if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select a creature!");
+            return;
+        }
+        viewModel.feedCreature(lstCreatures.getSelectionModel().getSelectedItem());
+        updateStats();
     }
 }

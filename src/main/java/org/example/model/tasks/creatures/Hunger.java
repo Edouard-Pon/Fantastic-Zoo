@@ -14,7 +14,7 @@ public class Hunger extends Task {
 
     @Override
     public void task() throws InterruptedException {
-        if (!creature.isHunger()) {
+        if (!creature.isHungry()) {
             Thread.sleep((int) (Math.random() * 6000) + 5000);
             creature.setHunger(true);
             if (super.isRunning()) Platform.runLater(() -> Data.getInstance().addLogMessage(creature.getName() + " is hungry!"));

@@ -122,12 +122,16 @@ public class Creature {
         this.age = age;
     }
 
-    public boolean isHunger() {
+    public boolean isHungry() {
         return hunger;
     }
 
     public void setHunger(boolean hunger) {
         this.hunger = hunger;
+    }
+
+    public void feed() {
+        hunger = false;
     }
 
     public boolean isSleeping() {

@@ -136,6 +136,7 @@ public class SimulationController {
                     for (String item : change.getAddedSubList()) {
                         txtLogMessages.appendText(item + "\n");
                     }
+                    updateStats();
                 }
             }
         });
@@ -285,5 +286,12 @@ public class SimulationController {
 
     public void clearCreatureMessage() {
         lblCreatureMessage.setText("");
+    }
+
+    public void updateStats() {
+        selectEnclosure();
+        showEnclosureStats();
+        showCreature();
+        showCreatureStats();
     }
 }

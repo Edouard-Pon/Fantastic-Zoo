@@ -2,6 +2,8 @@ package org.example.model.spaces;
 
 import org.example.model.creatures.Creature;
 import org.example.model.abilities.Swimming;
+import org.example.model.tasks.enclosures.Depth;
+import org.example.model.tasks.enclosures.WaterSalinity;
 
 import java.util.HashMap;
 
@@ -17,12 +19,16 @@ public class Aquarium extends Enclosure {
         this.defaultDepth = depth;
         this.waterSalinity = waterSalinity;
         this.defaultWaterSalinity = waterSalinity;
+        super.getTaskManager().startTasks(
+                new WaterSalinity(this),
+                new Depth(this)
+        );
     }
 
     // TODO Update the depth and water salinity check
     @Override
     public void maintain() {
-        if (!super.cleanlinessLevel() && super.getCreaturesList().isEmpty()) {
+        if (!super.isClean() && super.getCreaturesList().isEmpty()) {
             super.maintain();
             waterSalinity = defaultWaterSalinity;
             depth = defaultDepth;

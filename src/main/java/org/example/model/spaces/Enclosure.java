@@ -1,6 +1,7 @@
 package org.example.model.spaces;
 
 import org.example.model.creatures.Creature;
+import org.example.model.tasks.TaskManager;
 import org.example.model.tasks.enclosures.Cleanliness;
 
 import java.util.ArrayList;
@@ -12,16 +13,20 @@ public class Enclosure {
     private int maxCreaturesNumber;
     private int numberOfCreatures;
     private ArrayList<Creature> creaturesList;
-    private boolean cleanlinessLevel; // TODO Replace with Enum
+    private boolean isClean; // TODO Replace with Enum
+    private TaskManager taskManager;
 
     public Enclosure(String name, String area, int maxCreaturesNumber) {
         this.name = name;
         this.area = area;
         this.maxCreaturesNumber = maxCreaturesNumber;
-        this.cleanlinessLevel = true;
+        this.isClean = true;
         this.numberOfCreatures = 0;
         this.creaturesList = new ArrayList<>();
-        startTasks();
+        this.taskManager = new TaskManager();
+        taskManager.startTasks(
+                new Cleanliness(this)
+        );
     }
 
     // TODO Finish the getCharacteristics
@@ -30,7 +35,7 @@ public class Enclosure {
 
         characteristics.put("Name", name);
         characteristics.put("Area", area);
-        if (cleanlinessLevel) characteristics.put("CleanlinessLevel", "Clean");
+        if (isClean) characteristics.put("CleanlinessLevel", "Clean");
         else characteristics.put("CleanlinessLevel", "Dirty");
         characteristics.put("CreaturesInside", creaturesList.toString());
         characteristics.put("CreaturesCount", String.valueOf(numberOfCreatures));
@@ -80,8 +85,8 @@ public class Enclosure {
     }
 
     public void maintain() {
-        if (!cleanlinessLevel && creaturesList.isEmpty()) {
-            cleanlinessLevel = true;
+        if (!isClean && creaturesList.isEmpty()) {
+            isClean = true;
         }
     }
 
@@ -105,12 +110,12 @@ public class Enclosure {
         return creaturesList;
     }
 
-    public boolean cleanlinessLevel() {
-        return cleanlinessLevel;
+    public boolean isClean() {
+        return isClean;
     }
 
-    public void setCleanlinessLevel(boolean cleanlinessLevel) {
-        this.cleanlinessLevel = cleanlinessLevel;
+    public void setClean(boolean cleanlinessLevel) {
+        this.isClean = cleanlinessLevel;
     }
 
     public Creature getCreatureByName(String name) {
@@ -120,8 +125,11 @@ public class Enclosure {
         return null;
     }
 
-    private void startTasks() {
-        Thread cleanliness = new Thread(new Cleanliness(this));
-        cleanliness.start();
+    public void stopTasks() {
+        taskManager.stopTasks();
+    }
+
+    protected TaskManager getTaskManager() {
+        return taskManager;
     }
 }

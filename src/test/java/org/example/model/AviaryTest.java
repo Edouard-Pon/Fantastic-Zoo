@@ -54,7 +54,7 @@ public class AviaryTest {
         assertTrue(a1.isRoofBroken(), "Roof is broken");
 
         a1.removeCreatures();
-        a1.setCleanlinessLevel(false);
+        a1.setClean(false);
         a1.maintain();
 
         assertFalse(a1.isRoofBroken(), "Roof is not broken");

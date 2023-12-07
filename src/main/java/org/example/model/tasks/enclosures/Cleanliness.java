@@ -14,9 +14,9 @@ public class Cleanliness extends Task {
 
     @Override
     public void task() throws InterruptedException {
-        if (enclosure.cleanlinessLevel()) {
+        if (enclosure.isClean()) {
             Thread.sleep(30000);
-            enclosure.setCleanlinessLevel(false);
+            enclosure.setClean(false);
             if (super.isRunning()) Platform.runLater(() -> Data.getInstance().addLogMessage(enclosure.getName() + " is now dirty."));
         }
     }

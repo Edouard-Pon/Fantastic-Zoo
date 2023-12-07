@@ -1,6 +1,7 @@
 package org.example.model.creatures;
 
 import org.example.model.tasks.Task;
+import org.example.model.tasks.TaskManager;
 import org.example.model.tasks.creatures.Aging;
 import org.example.model.tasks.creatures.Health;
 import org.example.model.tasks.creatures.Hunger;
@@ -17,8 +18,7 @@ public class Creature {
     private boolean hunger;//TODO replace with 0-100 scale
     private boolean sleeping;
     private boolean health;//TODO replace with 0-100 scale
-    private ArrayList<Task> tasks;
-    private ArrayList<Thread> threads;
+    private TaskManager taskManager;
 
     public Creature(String name, boolean gender, float weight, float height, int age) {
         this.name = name;
@@ -29,9 +29,13 @@ public class Creature {
         this.hunger = false;
         this.sleeping = false;
         this.health = true;
-        this.tasks = new ArrayList<>();
-        this.threads = new ArrayList<>();
-        startTasks();
+        this.taskManager = new TaskManager();
+        taskManager.startTasks(
+                new Aging(this),
+                new Health(this),
+                new Hunger(this),
+                new Sleep(this)
+        );
     }
 
     @Override
@@ -142,20 +146,7 @@ public class Creature {
         this.health = health;
     }
 
-    public void startTasks() {
-        createTask(new Aging(this));
-        createTask(new Health(this));
-        createTask(new Hunger(this));
-        createTask(new Sleep(this));
-        for (Thread thread : threads) thread.start();
-    }
-
-    public void createTask(Task task) {
-        tasks.add(task);
-        threads.add(new Thread(task));
-    }
-
     public void stopTasks() {
-        for (Task task : tasks) task.stop();
+        taskManager.stopTasks();
     }
 }

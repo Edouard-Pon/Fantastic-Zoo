@@ -2,24 +2,29 @@ package org.example.model.spaces;
 
 import org.example.model.creatures.Creature;
 import org.example.model.abilities.Flying;
+import org.example.model.tasks.TaskManager;
+import org.example.model.tasks.enclosures.Roof;
 
 import java.util.HashMap;
 
 public class Aviary extends Enclosure {
     private int height;
-    private boolean roofBroken; // TODO Replace with Enum and rename it to roofStatus
+    private boolean isRoofBroken; // TODO Replace with Enum and rename it to roofStatus
 
     public Aviary(String name, String area, int maxCreaturesNumber, int height) {
         super(name, area, maxCreaturesNumber);
-        roofBroken = false;
+        isRoofBroken = false;
         this.height = height;
+        super.getTaskManager().startTasks(
+                new Roof(this)
+        );
     }
 
     @Override
     public void maintain() {
-        if (!super.cleanlinessLevel() && super.getCreaturesList().isEmpty()) {
+        if (!super.isClean() && super.getCreaturesList().isEmpty()) {
             super.maintain();
-            roofBroken = false;
+            isRoofBroken = false;
         }
     }
 
@@ -47,11 +52,11 @@ public class Aviary extends Enclosure {
     }
 
     public boolean isRoofBroken() {
-        return roofBroken;
+        return isRoofBroken;
     }
 
     public void setRoofBroken(boolean roofBroken) {
-        this.roofBroken = roofBroken;
+        this.isRoofBroken = roofBroken;
     }
 
     @Override
@@ -59,7 +64,7 @@ public class Aviary extends Enclosure {
         HashMap<String, String> characteristics = super.getCharacteristics();
 
         characteristics.put("Height", String.valueOf(height));
-        if (roofBroken) characteristics.put("RoofStatus", "Broken");
+        if (isRoofBroken) characteristics.put("RoofStatus", "Broken");
         else characteristics.put("RoofStatus", "Fixed");
 
         return characteristics;

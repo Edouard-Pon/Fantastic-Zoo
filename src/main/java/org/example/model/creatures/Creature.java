@@ -1,9 +1,12 @@
 package org.example.model.creatures;
 
+import org.example.model.tasks.Task;
 import org.example.model.tasks.creatures.Aging;
 import org.example.model.tasks.creatures.Health;
 import org.example.model.tasks.creatures.Hunger;
 import org.example.model.tasks.creatures.Sleep;
+
+import java.util.ArrayList;
 
 public class Creature {
     private String name;
@@ -14,6 +17,8 @@ public class Creature {
     private boolean hunger;//TODO replace with 0-100 scale
     private boolean sleeping;
     private boolean health;//TODO replace with 0-100 scale
+    private ArrayList<Task> tasks;
+    private ArrayList<Thread> threads;
 
     public Creature(String name, boolean gender, float weight, float height, int age) {
         this.name = name;
@@ -24,6 +29,8 @@ public class Creature {
         this.hunger = false;
         this.sleeping = false;
         this.health = true;
+        this.tasks = new ArrayList<>();
+        this.threads = new ArrayList<>();
         startTasks();
     }
 
@@ -136,16 +143,19 @@ public class Creature {
     }
 
     public void startTasks() {
-        Thread aging = new Thread(new Aging(this));
-        aging.start();
+        createTask(new Aging(this));
+        createTask(new Health(this));
+        createTask(new Hunger(this));
+        createTask(new Sleep(this));
+        for (Thread thread : threads) thread.start();
+    }
 
-        Thread hunger = new Thread(new Hunger(this));
-        hunger.start();
+    public void createTask(Task task) {
+        tasks.add(task);
+        threads.add(new Thread(task));
+    }
 
-        Thread health = new Thread(new Health(this));
-        health.start();
-
-        Thread sleep = new Thread(new Sleep(this));
-        sleep.start();
+    public void stopTasks() {
+        for (Task task : tasks) task.stop();
     }
 }

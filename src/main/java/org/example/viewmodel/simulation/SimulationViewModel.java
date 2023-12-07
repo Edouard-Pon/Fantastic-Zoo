@@ -97,6 +97,7 @@ public class SimulationViewModel {
     }
 
     public void removeCreature(String selectedCreature) {
+        currentEnclosure.getCreatureByName(selectedCreature).stopTasks();
         currentEnclosure.removeCreatureByName(selectedCreature);
     }
 

@@ -3,31 +3,21 @@ package org.example.model.tasks.creatures;
 import javafx.application.Platform;
 import org.example.model.creatures.Creature;
 import org.example.model.data.Data;
+import org.example.model.tasks.Task;
 
-public class Health implements Runnable {
-    private volatile boolean isRunning = true;
+public class Health extends Task {
     private Creature creature;
 
     public Health(Creature creature) {
         this.creature = creature;
     }
 
-    public void stop() {
-        isRunning = false;
-    }
-
     @Override
-    public void run() {
-        while (isRunning) {
-            try {
-                if (!creature.isHealth()) {
-                    Thread.sleep((int) (Math.random() * 21000) + 30000);
-                    creature.setHealth(false);
-                    Platform.runLater(() -> Data.getInstance().addLogMessage(creature.getName() + " is now sick."));
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public void task() throws InterruptedException {
+        if (!creature.isHealth()) {
+            Thread.sleep((int) (Math.random() * 21000) + 30000);
+            creature.setHealth(false);
+            if (super.isRunning()) Platform.runLater(() -> Data.getInstance().addLogMessage(creature.getName() + " is now sick."));
         }
     }
 }

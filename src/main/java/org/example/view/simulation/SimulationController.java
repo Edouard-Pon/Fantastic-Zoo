@@ -81,6 +81,8 @@ public class SimulationController {
     private Button btnFeedCreature;
     @FXML
     private Label lblCreatureAlive;
+    @FXML
+    private Button btnHealCreature;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -132,7 +134,7 @@ public class SimulationController {
             }
             case "btnFeedCreature" -> feedCreature();
             case "btnMaintainEnclosure" -> maintainEnclosure();
-//            case "btnViewEnclosure" -> SceneManager.getInstance().showScene("");
+            case "btnHealCreature" -> healCreature();
         }
     }
 
@@ -184,6 +186,7 @@ public class SimulationController {
         btnRemoveCreature.setDisable(false);
         btnViewCreature.setDisable(false);
         btnFeedCreature.setDisable(false);
+        btnHealCreature.setDisable(false);
     }
 
     private void lockCreatureControls() {
@@ -191,6 +194,7 @@ public class SimulationController {
         btnRemoveCreature.setDisable(true);
         btnViewCreature.setDisable(true);
         btnFeedCreature.setDisable(true);
+        btnHealCreature.setDisable(true);
     }
 
     public void clearFields() {
@@ -327,6 +331,15 @@ public class SimulationController {
             return;
         }
         viewModel.feedCreature(lstCreatures.getSelectionModel().getSelectedItem());
+        updateStats();
+    }
+
+    public void healCreature() {
+        if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
+            lblWarning.setText("Please select a creature!");
+            return;
+        }
+        viewModel.healCreature(lstCreatures.getSelectionModel().getSelectedItem());
         updateStats();
     }
 

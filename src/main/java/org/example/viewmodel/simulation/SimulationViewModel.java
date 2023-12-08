@@ -163,4 +163,12 @@ public class SimulationViewModel {
         if (!enclosure.maintain()) return;
         Data.getInstance().addLogMessage(enclosure.getName() + " is maintained!");
     }
+
+    public void healCreature(String creatureName) {
+        Creature creature = currentEnclosure.getCreatureByName(creatureName);
+        if (creature == null) return;
+        if (creature.isHealthy()) return;
+        creature.heal();
+        Data.getInstance().addLogMessage(creature.getName() + " is healed!");
+    }
 }

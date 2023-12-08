@@ -166,4 +166,8 @@ public class Creature {
     public void clearTasks() {
         taskManager.clearTasks();
     }
+
+    public void heal() {
+        health = true;
+    }
 }

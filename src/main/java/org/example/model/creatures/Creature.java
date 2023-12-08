@@ -1,13 +1,7 @@
 package org.example.model.creatures;
 
-import org.example.model.tasks.Task;
 import org.example.model.tasks.TaskManager;
-import org.example.model.tasks.creatures.Aging;
-import org.example.model.tasks.creatures.Health;
-import org.example.model.tasks.creatures.Hunger;
-import org.example.model.tasks.creatures.Sleep;
-
-import java.util.ArrayList;
+import org.example.model.tasks.creatures.*;
 
 public class Creature {
     private String name;
@@ -19,6 +13,7 @@ public class Creature {
     private boolean sleeping;
     private boolean health;//TODO replace with 0-100 scale
     private TaskManager taskManager;
+    private boolean alive;
 
     public Creature(String name, boolean gender, float weight, float height, int age) {
         this.name = name;
@@ -29,12 +24,14 @@ public class Creature {
         this.hunger = false;
         this.sleeping = false;
         this.health = true;
+        this.alive = true;
         this.taskManager = new TaskManager();
         taskManager.startTasks(
                 new Aging(this),
                 new Health(this),
                 new Hunger(this),
-                new Sleep(this)
+                new Sleep(this),
+                new Death(this)
         );
     }
 
@@ -142,8 +139,16 @@ public class Creature {
         this.sleeping = sleeping;
     }
 
-    public boolean isHealth() {
+    public boolean isHealthy() {
         return health;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
     public void setHealth(boolean health) {

@@ -79,6 +79,8 @@ public class SimulationController {
     private TextArea txtLogMessages;
     @FXML
     private Button btnFeedCreature;
+    @FXML
+    private Label lblCreatureAlive;
 
     public SimulationController() {
         viewModel = new SimulationViewModel();
@@ -251,6 +253,7 @@ public class SimulationController {
         lblCreatureHunger.setText("Hunger: " + stats.get("Hunger"));
         lblCreatureHealth.setText("Health: " + stats.get("Health"));
         lblCreatureSleep.setText("Sleep: " + stats.get("Sleep"));
+        lblCreatureAlive.setText("Status: " + stats.get("Alive"));
     }
 
     private void clearCreatureStats() {

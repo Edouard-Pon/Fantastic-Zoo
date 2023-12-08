@@ -42,6 +42,7 @@
             <Label fx:id="lblEnclosureRoofStatus" layoutX="450.0" layoutY="421.0" prefHeight="25.0" prefWidth="218.0" />
             <Label fx:id="lblEnclosureWaterSalinity1" layoutX="668.0" layoutY="421.0" prefHeight="25.0" prefWidth="218.0" />
             <Label fx:id="lblCreatureSleep" layoutX="450.0" layoutY="222.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label fx:id="lblCreatureAlive" layoutX="450.0" layoutY="247.0" prefHeight="25.0" prefWidth="436.0" />
          </children></Pane>
       <Pane layoutX="14.0" layoutY="526.0" prefHeight="180.0" prefWidth="400.0" style="-fx-background-color: red;">
          <children>

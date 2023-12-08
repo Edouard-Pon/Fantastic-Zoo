@@ -11,7 +11,6 @@ import org.example.model.spaces.Aviary;
 import org.example.model.spaces.Enclosure;
 import org.example.model.zoo.FantasticZoo;
 
-import java.awt.dnd.DropTarget;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -114,17 +113,11 @@ public class SimulationViewModel {
         stats.put("Height", String.valueOf(creature.getHeight()));
         stats.put("Age", String.valueOf(creature.getAge()));
         stats.put("Type", creature.getClass().getSimpleName());
-
-        if (creature.isSleeping()) stats.put("Sleep", "Sleeping");
-        else stats.put("Sleep", "Not sleeping");
-        if (creature.isGender()) stats.put("Gender", "Male");
-        else stats.put("Gender", "Female");
-        if (creature.isHungry()) stats.put("Hunger", "Hungry");
-        else stats.put("Hunger", "Not hungry");
-        if (creature.isSleeping()) stats.put("Sleeping", "Sleeping");
-        else stats.put("Sleeping", "Not sleeping");
-        if (creature.isHealth()) stats.put("Health", "Healthy");
-        else stats.put("Health", "Not healthy");
+        stats.put("Alive", creature.isAlive() ? "Alive" : "Dead");
+        stats.put("Sleep", creature.isSleeping() ? "Sleeping" : "Not sleeping");
+        stats.put("Gender", creature.isGender() ? "Male" : "Female");
+        stats.put("Hunger", creature.isHungry() ? "Hungry" : "Not hungry");
+        stats.put("Health", creature.isHealthy() ? "Healthy" : "Not healthy");
 
         return stats;
     }

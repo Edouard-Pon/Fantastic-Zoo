@@ -26,13 +26,7 @@ public class Creature {
         this.health = true;
         this.alive = true;
         this.taskManager = new TaskManager();
-        taskManager.startTasks(
-                new Aging(this),
-                new Health(this),
-                new Hunger(this),
-                new Sleep(this),
-                new Death(this)
-        );
+        startTasks();
     }
 
     @Override
@@ -157,5 +151,19 @@ public class Creature {
 
     public void stopTasks() {
         taskManager.stopTasks();
+    }
+
+    public void startTasks() {
+        taskManager.startTasks(
+                new Aging(this),
+                new Health(this),
+                new Hunger(this),
+                new Sleep(this),
+                new Death(this)
+        );
+    }
+
+    public void clearTasks() {
+        taskManager.clearTasks();
     }
 }

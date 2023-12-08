@@ -2,6 +2,9 @@ package org.example.model.tasks.creatures;
 
 import javafx.application.Platform;
 import org.example.model.creatures.Creature;
+import org.example.model.creatures.Dragon;
+import org.example.model.creatures.Nymph;
+import org.example.model.creatures.Phoenix;
 import org.example.model.data.Data;
 import org.example.model.tasks.Task;
 
@@ -25,9 +28,17 @@ public class Death extends Task {
                 Data.getInstance().addLogMessage(creature.getName() + " has died!");
             });
         }
+        if (!creature.isAlive()) {
+            Thread.sleep(3000);
+            if (creature instanceof Dragon) ((Dragon) creature).reborn();
+            else if (creature instanceof Nymph) ((Nymph) creature).reborn();
+            else if (creature instanceof Phoenix) ((Phoenix) creature).reborn();
+        }
         if (!creature.isHealthy() && creature.isHungry()) {
             Thread.sleep(10000);
             tryCount++;
+        } else {
+            tryCount = 0;
         }
     }
 }

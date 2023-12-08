@@ -1,5 +1,7 @@
 package org.example.model.creatures;
 
+import javafx.application.Platform;
+import org.example.model.data.Data;
 import org.example.model.reproduction.Viviparous;
 
 public class Nymph extends Viviparous {
@@ -9,5 +11,12 @@ public class Nymph extends Viviparous {
 
     public void reborn() {
         this.setAge(0);
+        this.setAlive(true);
+        this.setHealth(true);
+        this.setHunger(true);
+        this.setSleeping(false);
+        this.clearTasks();
+        this.startTasks();
+        Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " has reborn!"));
     }
 }

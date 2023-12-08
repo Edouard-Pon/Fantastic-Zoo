@@ -1,6 +1,8 @@
 package org.example.model.creatures;
 
+import javafx.application.Platform;
 import org.example.model.abilities.Flying;
+import org.example.model.data.Data;
 import org.example.model.reproduction.Oviparous;
 
 public class Phoenix extends Oviparous implements Flying {
@@ -10,6 +12,13 @@ public class Phoenix extends Oviparous implements Flying {
 
     public void reborn() {
         this.setAge(0);
+        this.setAlive(true);
+        this.setHealth(true);
+        this.setHunger(true);
+        this.setSleeping(false);
+        this.clearTasks();
+        this.startTasks();
+        Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " has reborn!"));
     }
 
     @Override

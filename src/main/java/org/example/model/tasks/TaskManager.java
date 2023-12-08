@@ -34,4 +34,9 @@ public class TaskManager {
             task.stop();
         }
     }
+
+    public void clearTasks() {
+        tasks.clear();
+        threads.clear();
+    }
 }

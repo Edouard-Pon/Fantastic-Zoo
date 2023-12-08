@@ -84,25 +84,41 @@ public class SimulationController {
     @FXML
     private Button btnHealCreature;
 
+    /**
+     * Constructor for the SimulationController
+     */
     public SimulationController() {
         viewModel = new SimulationViewModel();
         lstEnclosures = new ListView<>();
     }
 
+    /**
+     * Initializes the controller class.
+     */
     public void initialize() {
         initBindings();
     }
 
+    /**
+     * Initializes the bindings.
+     */
     private void initBindings() {
         // TODO remove this if not needed
 //        bindLblZooName();
         bindTxtLogMessages();
     }
 
+    /**
+     * Updates the data.
+     */
     public void updateData() {
         bindLblZooName();
     }
 
+    /**
+     * Navigation buttons handler.
+     * @param event
+     */
     @FXML
     public void navButtonsHandler(ActionEvent event) {
         switch (((Button) event.getSource()).getId()) {
@@ -138,10 +154,16 @@ public class SimulationController {
         }
     }
 
+    /**
+     * Binds the zoo name label.
+     */
     private void bindLblZooName() {
         lblZooName.textProperty().bind(viewModel.currentZooNameProperty());
     }
 
+    /**
+     * Binds the log messages text area.
+     */
     private void bindTxtLogMessages() {
         viewModel.logMessagesProperty().addListener((ListChangeListener.Change<? extends String> change) -> {
             while (change.next()) {
@@ -155,6 +177,9 @@ public class SimulationController {
         });
     }
 
+    /**
+     * Updates the enclosures list.
+     */
     public void updateEnclosuresList() {
         ObservableList<String> enclosuresNames = FXCollections.observableArrayList(viewModel.currentZooEnclosuresNamesList());
         lstEnclosures.setItems(enclosuresNames);
@@ -162,6 +187,9 @@ public class SimulationController {
         clearEnclosureStats();
     }
 
+    /**
+     * Updates the creatures list.
+     */
     public void updateCreaturesList() {
         ObservableList<String> creaturesNames = FXCollections.observableArrayList(viewModel.currentEnclosureCreaturesNamesList());
         lstCreatures.setItems(creaturesNames);
@@ -170,6 +198,9 @@ public class SimulationController {
         clearCreatureStats();
     }
 
+    /**
+     * Selects an enclosure.
+     */
     private void selectEnclosure() {
         viewModel.setCurrentEnclosure(lstEnclosures.getSelectionModel().getSelectedItem());
         if (viewModel.getCurrentEnclosure() == null) {
@@ -181,6 +212,9 @@ public class SimulationController {
         updateCreaturesList();
     }
 
+    /**
+     * Unlocks the creature controls.
+     */
     private void unlockCreatureControls() {
         btnPopupAddCreature.setDisable(false);
         btnRemoveCreature.setDisable(false);
@@ -189,6 +223,9 @@ public class SimulationController {
         btnHealCreature.setDisable(false);
     }
 
+    /**
+     * Locks the creature controls.
+     */
     private void lockCreatureControls() {
         btnPopupAddCreature.setDisable(true);
         btnRemoveCreature.setDisable(true);
@@ -197,6 +234,9 @@ public class SimulationController {
         btnHealCreature.setDisable(true);
     }
 
+    /**
+     * Clears the fields.
+     */
     public void clearFields() {
         lblEnclosureName.setText("");
         lblWarning.setText("");
@@ -204,6 +244,9 @@ public class SimulationController {
         lstCreatures.getItems().clear();
     }
 
+    /**
+     * Removes a creature.
+     */
     private void removeCreature() {
         if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select a creature!");
@@ -213,6 +256,10 @@ public class SimulationController {
         updateCreaturesList();
     }
 
+    /**
+     * Removes an enclosure.
+     * @return true if the enclosure was removed, false otherwise
+     */
     private boolean removeEnclosure() {
         if (lstEnclosures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select an enclosure!");
@@ -223,6 +270,9 @@ public class SimulationController {
         return true;
     }
 
+    /**
+     * Shows a creature.
+     */
     private void showCreature() {
         if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select a creature!");
@@ -241,6 +291,9 @@ public class SimulationController {
         paneCreatureImage.getChildren().add(imageView);
     }
 
+    /**
+     * Shows the creature stats.
+     */
     private void showCreatureStats() {
         if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select a creature!");
@@ -260,6 +313,9 @@ public class SimulationController {
         lblCreatureAlive.setText("Status: " + stats.get("Alive"));
     }
 
+    /**
+     * Clears the creature stats.
+     */
     private void clearCreatureStats() {
         lblCreatureName.setText("");
         lblCreatureType.setText("");
@@ -272,6 +328,9 @@ public class SimulationController {
         lblCreatureSleep.setText("");
     }
 
+    /**
+     * Shows the enclosure stats.
+     */
     private void showEnclosureStats() {
         if (lstEnclosures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select an enclosure!");
@@ -298,6 +357,9 @@ public class SimulationController {
         lblEnclosureCleanlinessLevel.setText("Cleanliness Level: " + stats.get("CleanlinessLevel"));
     }
 
+    /**
+     * Clears the enclosure stats.
+     */
     private void clearEnclosureStats() {
         lblEnclosureType.setText("");
         lblEnclosureArea.setText("");
@@ -310,14 +372,24 @@ public class SimulationController {
         lblEnclosureRoofStatus.setText("");
     }
 
+    /**
+     * Shows a message.
+     * @param message the message to be shown
+     */
     public void showCreatureMessage(String message) {
         lblCreatureMessage.setText(message);
     }
 
+    /**
+     * Clears the creature message.
+     */
     public void clearCreatureMessage() {
         lblCreatureMessage.setText("");
     }
 
+    /**
+     * Updates the stats.
+     */
     public void updateStats() {
         selectEnclosure();
         showEnclosureStats();
@@ -325,6 +397,9 @@ public class SimulationController {
         showCreatureStats();
     }
 
+    /**
+     * Feed a creature.
+     */
     private void feedCreature() {
         if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select a creature!");
@@ -334,6 +409,9 @@ public class SimulationController {
         updateStats();
     }
 
+    /**
+     * Heal a creature.
+     */
     public void healCreature() {
         if (lstCreatures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select a creature!");
@@ -343,6 +421,9 @@ public class SimulationController {
         updateStats();
     }
 
+    /**
+     * Maintains an enclosure.
+     */
     private void maintainEnclosure() {
         if (lstEnclosures.getSelectionModel().getSelectedItem() == null) {
             lblWarning.setText("Please select an enclosure!");

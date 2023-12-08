@@ -15,12 +15,19 @@ public class SceneManager {
     private Map<String, Scene> scenes;
     private Map<String, Object> controllers;
 
+    /**
+     * Constructor for SceneManager
+     */
     private SceneManager() {
         stage = new Stage();
         scenes = new HashMap<>();
         controllers = new HashMap<>();
     }
 
+    /**
+     * Get the instance of SceneManager
+     * @return SceneManager
+     */
     public static SceneManager getInstance() {
         if (instance == null) {
             instance = new SceneManager();
@@ -28,6 +35,10 @@ public class SceneManager {
         return instance;
     }
 
+    /**
+     * Preload a scene
+     * @param fileName
+     */
     public void preloadScene(String fileName) {
         try {
             String resourcePath = "/org/example/fxml/" + fileName + ".fxml";
@@ -51,6 +62,10 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Show a scene
+     * @param fileName
+     */
     public void showScene(String fileName) {
         if (!scenes.containsKey(fileName)) {
             preloadScene(fileName);
@@ -73,6 +88,10 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Show a popup
+     * @param fileName
+     */
     public void showPopup(String fileName) {
         if (!scenes.containsKey(fileName)) {
             preloadScene(fileName);
@@ -84,6 +103,10 @@ public class SceneManager {
         popUpStage.show();
     }
 
+    /**
+     * Close a popup
+     * @param fileName
+     */
     public void closePopup(String fileName) {
         if (!scenes.containsKey(fileName)) {
             System.err.println("Scene " + fileName + " is not loaded");
@@ -93,6 +116,10 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Close a scene
+     * @param fileName
+     */
     public void closeScene(String fileName) {
         if (!scenes.containsKey(fileName)) {
             System.err.println("Scene " + fileName + " is not loaded");
@@ -102,6 +129,11 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Get the controller of a scene
+     * @param fileName
+     * @return Object
+     */
     public Object getController(String fileName) {
         return controllers.get(fileName);
     }

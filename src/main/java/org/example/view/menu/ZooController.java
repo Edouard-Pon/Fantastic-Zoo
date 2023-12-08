@@ -24,10 +24,17 @@ public class ZooController {
     @FXML
     private Label lblWarning;
 
+    /**
+     * Constructor for ZooController
+     */
     public ZooController() {
         zooViewModel = new ZooViewModel();
     }
 
+    /**
+     * Navigation buttons handler
+     * @param event
+     */
     @FXML
     public void navButtonsHandler(ActionEvent event) {
         switch (((Button) event.getSource()).getId()) {
@@ -38,6 +45,10 @@ public class ZooController {
         }
     }
 
+    /**
+     * Update masters list
+     * @param event
+     */
     @FXML
     public void updateMastersList(MouseEvent event) {
         for (Master master : zooViewModel.getMastersList()) {
@@ -47,6 +58,9 @@ public class ZooController {
     }
 
     // TODO add restriction to add only one zoo with the same name
+    /**
+     * Create zoo
+     */
     private void createZoo() {
         if (txtZooName.getText().isEmpty() || txtMaxEnclosuresNumber.getText().isEmpty() || cbMasterName.getValue() == null) {
             lblWarning.setText("Please fill all the fields!");
@@ -61,6 +75,9 @@ public class ZooController {
         resetAllFields();
     }
 
+    /**
+     * Reset all fields
+     */
     private void resetAllFields() {
         txtZooName.setText("");
         txtMaxEnclosuresNumber.setText("");

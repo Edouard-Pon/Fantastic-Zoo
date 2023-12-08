@@ -26,10 +26,17 @@ public class AddCreatureController {
     @FXML
     private ComboBox<String> cbCreatureEnclosure;
 
+    /**
+     * Constructor for AddCreatureController
+     */
     public AddCreatureController() {
         viewModel = new SimulationViewModel();
     }
 
+    /**
+     * Navigation buttons handler
+     * @param event
+     */
     @FXML
     public void navButtonsHandler(ActionEvent event) {
         switch (((Button) event.getSource()).getId()) {
@@ -50,6 +57,9 @@ public class AddCreatureController {
         }
     }
 
+    /**
+     * Create creature
+     */
     private void createCreature() {
         String creatureType = cbCreatureType.getValue();
         String creatureName = txtCreatureName.getText();
@@ -72,6 +82,9 @@ public class AddCreatureController {
         }
     }
 
+    /**
+     * Clear fields
+     */
     private void clearFields() {
         cbCreatureType.setValue(null);
         txtCreatureName.setText("");
@@ -83,6 +96,10 @@ public class AddCreatureController {
         cbCreatureEnclosure.setValue(null);
     }
 
+    /**
+     * Update enclosures list
+     * @param event
+     */
     @FXML
     public void updateEnclosuresList(MouseEvent event) {
         cbCreatureEnclosure.getItems().clear();

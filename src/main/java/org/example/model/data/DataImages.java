@@ -19,10 +19,17 @@ public class DataImages {
     private final String IMAGE_MEGALODON = "megalodon";
     private Map<String, Image> imagesMap;
 
+    /**
+     * Constructor
+     */
     private DataImages() {
         imagesMap = new HashMap<>();
     }
 
+    /**
+     * DataImages class
+     * @return DataImages instance
+     */
     public static DataImages getInstance() {
         if (instance == null) {
             instance = new DataImages();
@@ -30,6 +37,9 @@ public class DataImages {
         return instance;
     }
 
+    /**
+     * Load images
+     */
     public void loadImages() {
         imagesMap.put(IMAGE_UNICORN, new Image(IMAGE_PATH + IMAGE_UNICORN + IMAGE_EXTENSION));
         imagesMap.put(IMAGE_DRAGON, new Image(IMAGE_PATH + IMAGE_DRAGON + IMAGE_EXTENSION));
@@ -41,6 +51,11 @@ public class DataImages {
         imagesMap.put(IMAGE_MEGALODON, new Image(IMAGE_PATH + IMAGE_MEGALODON + IMAGE_EXTENSION));
     }
 
+    /**
+     * Get image
+     * @param imageName image name
+     * @return image
+     */
     public Image getImage(String imageName) {
         return imagesMap.get(imageName);
     }

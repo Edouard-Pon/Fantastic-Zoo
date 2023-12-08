@@ -8,10 +8,18 @@ import org.example.model.tasks.Task;
 public class Roof extends Task {
     private Aviary aviary;
 
+    /**
+     * Constructor of the Roof class.
+     * @param aviary
+     */
     public Roof(Aviary aviary) {
         this.aviary = aviary;
     }
 
+    /**
+     * Roof task.
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         if (!aviary.isRoofBroken()) {

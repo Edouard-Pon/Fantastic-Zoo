@@ -25,10 +25,17 @@ public class AddEnclosureController {
     @FXML
     private ComboBox<String> cmbEnclosureType;
 
+    /**
+     * Constructor for AddEnclosureController.
+     */
     public AddEnclosureController() {
         viewModel = new SimulationViewModel();
     }
 
+    /**
+     * Navigation buttons handler.
+     * @param event
+     */
     @FXML
     public void navButtonsHandler(ActionEvent event) {
         switch (((Button) event.getSource()).getId()) {
@@ -49,6 +56,10 @@ public class AddEnclosureController {
         }
     }
 
+    /**
+     * Enclosure type handler.
+     * @param event
+     */
     @FXML
     public void handleEnclosureType(ActionEvent event) {
         switch (cmbEnclosureType.getValue()) {
@@ -76,6 +87,9 @@ public class AddEnclosureController {
         }
     }
 
+    /**
+     * Creates an enclosure.
+     */
     private void createEnclosure() {
         String name = txtEnclosureName.getText();
         String type = cmbEnclosureType.getValue();
@@ -98,6 +112,9 @@ public class AddEnclosureController {
         }
     }
 
+    /**
+     * Clears all the fields.
+     */
     private void clearFields() {
         txtEnclosureName.setText("");
         txtEnclosureArea.setText("");

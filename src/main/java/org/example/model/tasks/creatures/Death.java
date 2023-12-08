@@ -13,10 +13,18 @@ public class Death extends Task {
     private int tryCount = 0;
     private final int maxTryCount = 3;
 
+    /**
+     * Constructor of Death task
+     * @param creature
+     */
     public Death(Creature creature) {
         this.creature = creature;
     }
 
+    /**
+     * Task of Death
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         Thread.sleep(1000);

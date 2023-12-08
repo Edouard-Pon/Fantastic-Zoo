@@ -20,10 +20,17 @@ public class MasterController {
     @FXML
     private Label lblWarning;
 
+    /**
+     * Constructor for MasterController
+     */
     public MasterController() {
         masterViewModel = new MasterViewModel();
     }
 
+    /**
+     * Navigation buttons handler
+     * @param event
+     */
     @FXML
     public void navButtonsHandler(ActionEvent event) {
         switch (((Button) event.getSource()).getId()) {
@@ -35,6 +42,10 @@ public class MasterController {
     }
 
     // TODO add restriction to add only one master with the same name
+
+    /**
+     * Create master method
+     */
     private void createMaster() {
         if (txtMasterName.getText().isEmpty() || txtMasterAge.getText().isEmpty() || cbMasterGender.getValue() == null) {
             lblWarning.setText("Please fill all the fields!");
@@ -49,6 +60,9 @@ public class MasterController {
         resetAllFields();
     }
 
+    /**
+     * Reset all fields method
+     */
     private void resetAllFields() {
         txtMasterName.setText("");
         txtMasterAge.setText("");

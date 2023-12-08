@@ -13,6 +13,14 @@ public class Aquarium extends Enclosure {
     private double waterSalinity; // TODO Replace with better solution, maybe Enum?
     private double defaultWaterSalinity;
 
+    /**
+     * Constructor for Aquarium
+     * @param name
+     * @param area
+     * @param maxCreaturesNumber
+     * @param depth
+     * @param waterSalinity
+     */
     public Aquarium(String name, String area, int maxCreaturesNumber, int depth, double waterSalinity) {
         super(name, area, maxCreaturesNumber);
         this.depth = depth;
@@ -26,6 +34,10 @@ public class Aquarium extends Enclosure {
     }
 
     // TODO Update the depth and water salinity check
+    /**
+     * Maintain the Aquarium
+     * @return
+     */
     @Override
     public boolean maintain() {
         if (!super.maintain()) return false;
@@ -34,6 +46,10 @@ public class Aquarium extends Enclosure {
         return true;
     }
 
+    /**
+     * Add creatures to the Aquarium
+     * @param creatures
+     */
     @Override
     public void addCreatures(Creature... creatures) {
         if (creatures == null) return;
@@ -57,22 +73,42 @@ public class Aquarium extends Enclosure {
         }
     }
 
+    /**
+     * Get the depth of the Aquarium
+     * @return depth
+     */
     public int getDepth() {
         return depth;
     }
 
+    /**
+     * Set the depth of the Aquarium
+     * @param depth
+     */
     public void setDepth(int depth) {
         this.depth = depth;
     }
 
+    /**
+     * Get the water salinity of the Aquarium
+     * @return waterSalinity
+     */
     public double getWaterSalinity() {
         return waterSalinity;
     }
 
+    /**
+     * Set the water salinity of the Aquarium
+     * @param waterSalinity
+     */
     public void setWaterSalinity(double waterSalinity) {
         this.waterSalinity = waterSalinity;
     }
 
+    /**
+     * Get the characteristics of the Aquarium
+     * @return characteristics
+     */
     @Override
     public HashMap<String, String> getCharacteristics() {
         HashMap<String, String> characteristics = super.getCharacteristics();

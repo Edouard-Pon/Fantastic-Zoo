@@ -8,10 +8,18 @@ import org.example.model.tasks.Task;
 public class Hunger extends Task {
     private Creature creature;
 
+    /**
+     * Constructor for Hunger task
+     * @param creature
+     */
     public Hunger(Creature creature) {
         this.creature = creature;
     }
 
+    /**
+     * Method that sets the creature to hungry and adds a log message
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         if (!creature.isHungry()) {

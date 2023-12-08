@@ -11,11 +11,19 @@ public class Depth extends Task {
     private Aquarium aquarium;
     private Random random;
 
+    /**
+     * Constructor of Depth
+     * @param aquarium
+     */
     public Depth(Aquarium aquarium) {
         this.aquarium = aquarium;
         this.random = new Random();
     }
 
+    /**
+     * Decreases the depth of the aquarium by a random number between 5 and 10
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         Thread.sleep(60000);

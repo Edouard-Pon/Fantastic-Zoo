@@ -8,10 +8,18 @@ import org.example.model.tasks.Task;
 public class Health extends Task {
     private Creature creature;
 
+    /**
+     * Constructor for Health
+     * @param creature
+     */
     public Health(Creature creature) {
         this.creature = creature;
     }
 
+    /**
+     * Health task
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         if (creature.isHealthy()) {

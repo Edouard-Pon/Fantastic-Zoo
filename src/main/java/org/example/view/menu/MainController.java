@@ -19,10 +19,17 @@ public class MainController {
     @FXML
     private Label lblWarning;
 
+    /**
+     * Constructor of the MainController class.
+     */
     public MainController() {
         mainViewModel = new MainViewModel();
     }
 
+    /**
+     * Navigation buttons handler.
+     * @param event
+     */
     @FXML
     public void navButtonsHandler(ActionEvent event) {
         switch (((Button) event.getSource()).getId()) {
@@ -51,6 +58,10 @@ public class MainController {
         }
     }
 
+    /**
+     * Update the list of zoos.
+     * @param event
+     */
     @FXML
     public void updateZoosList(MouseEvent event) {
         for (FantasticZoo fantasticZoo : mainViewModel.getFantasticZoosList()) {
@@ -59,6 +70,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Set the current zoo.
+     */
     private void setCurrentZoo() {
         if (cbFantasticZooName.getValue() == null) {
             lblWarning.setText("Please select a zoo!");

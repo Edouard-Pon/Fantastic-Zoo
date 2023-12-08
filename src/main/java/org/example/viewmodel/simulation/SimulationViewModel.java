@@ -21,10 +21,25 @@ public class SimulationViewModel {
 
     public SimulationViewModel() {}
 
+    /**
+     * Get zoo name property
+     * @return
+     */
     public StringProperty currentZooNameProperty() {
         return Data.getInstance().getCurrentZoo().nameProperty();
     }
 
+    /**
+     * Create enclosure
+     * @param name
+     * @param type
+     * @param area
+     * @param maxCreatures
+     * @param height
+     * @param depth
+     * @param waterSalinity
+     * @return true if enclosure is created, false otherwise
+     */
     public boolean createEnclosure(String name, String type, String area, String maxCreatures, String height, String depth, String waterSalinity) {
         if (type == null || type.isEmpty() || name.isEmpty() || area.isEmpty() || maxCreatures.isEmpty()) return false;
         switch (type) {
@@ -43,6 +58,10 @@ public class SimulationViewModel {
         return true;
     }
 
+    /**
+     * Get current zoo enclosures names list
+     * @return enclosureNames
+     */
     public ArrayList<String> currentZooEnclosuresNamesList() {
         ArrayList<String> enclosureNames = new ArrayList<>();
         for (Enclosure enclosure : Data.getInstance().getCurrentZoo().getEnclosureList()) {
@@ -51,6 +70,17 @@ public class SimulationViewModel {
         return enclosureNames;
     }
 
+    /**
+     * Create creature
+     * @param creatureType
+     * @param creatureName
+     * @param creatureGender
+     * @param creatureWeight
+     * @param creatureHeight
+     * @param creatureAge
+     * @param creatureEnclosure
+     * @return true if creature is created, false otherwise
+     */
     public boolean createCreature(String creatureType, String creatureName, String creatureGender, String creatureWeight, String creatureHeight, String creatureAge, String creatureEnclosure) {
         if (creatureType == null || creatureType.isEmpty() || creatureName.isEmpty() || creatureGender == null || creatureGender.isEmpty() || creatureWeight.isEmpty() || creatureHeight.isEmpty() || creatureAge.isEmpty() || creatureEnclosure.isEmpty()) return false;
 
@@ -70,22 +100,45 @@ public class SimulationViewModel {
         return true;
     }
 
+    /**
+     * Set current enclosure
+     * @param enclosureName
+     */
     public void setCurrentEnclosure(String enclosureName) {
         currentEnclosure = Data.getInstance().getCurrentZoo().getEnclosureByName(enclosureName);
     }
 
+    /**
+     * Get current enclosure
+     * @return currentEnclosure
+     */
     public Enclosure getCurrentEnclosure() {
         return currentEnclosure;
     }
 
+    /**
+     * Get enclosure by name
+     * @param name
+     * @return enclosure
+     */
     public Enclosure getEnclosureByName(String name) {
         return Data.getInstance().getCurrentZoo().getEnclosureByName(name);
     }
 
+    /**
+     * Check enclosure has creature
+     * @param creatureName
+     * @param enclosureName
+     * @return true if enclosure has creature, false otherwise
+     */
     public boolean hasCreature(String creatureName, String enclosureName) {
         return Data.getInstance().getCurrentZoo().getEnclosureByName(enclosureName).getCreatureByName(creatureName) != null;
     }
 
+    /**
+     * Get current enclosure creatures names list
+     * @return creatureNames
+     */
     public ArrayList<String> currentEnclosureCreaturesNamesList() {
         ArrayList<String> creatureNames = new ArrayList<>();
         if (currentEnclosure == null) return creatureNames;
@@ -95,23 +148,43 @@ public class SimulationViewModel {
         return creatureNames;
     }
 
+    /**
+     * Set current zoo
+     */
     public void setCurrentZoo(FantasticZoo fantasticZoo) {
         Data.getInstance().setCurrentZoo(fantasticZoo);
     }
 
+    /**
+     * Set current creature
+     * @param creatureName
+     */
     public void setCurrentCreature(String creatureName) {
         currentCreature = currentEnclosure.getCreatureByName(creatureName);
     }
 
+    /**
+     * Remove creature
+     * @param selectedCreature
+     */
     public void removeCreature(String selectedCreature) {
         currentEnclosure.getCreatureByName(selectedCreature).stopTasks();
         currentEnclosure.removeCreatureByName(selectedCreature);
     }
 
+    /**
+     * Get current creature image
+     * @return image
+     */
     public Image getCurrentCreatureImage() {
         return DataImages.getInstance().getImage(currentCreature.getClass().getSimpleName().toLowerCase());
     }
 
+    /**
+     * Get creature stats
+     * @param creature
+     * @return stats
+     */
     public Map<String, String> getCreatureStats(Creature creature) {
         if (creature == null) return null;
         Map<String, String> stats = new HashMap<>();
@@ -130,20 +203,38 @@ public class SimulationViewModel {
         return stats;
     }
 
+    /**
+     * Get current creature
+     * @return currentCreature
+     */
     public Creature getCurrentCreature() {
         return currentCreature;
     }
 
+    /**
+     * Get current enclosure stats
+     * @param currentEnclosure
+     * @return stats
+     */
     public Map<String, String> getEnclosureStats(Enclosure currentEnclosure) {
         if (currentEnclosure == null) return null;
 
         return currentEnclosure.getCharacteristics();
     }
 
+    /**
+     * Get log messages property
+     * @return logMessagesProperty
+     */
     public ObservableList<String> logMessagesProperty() {
         return Data.getInstance().logMessagesProperty();
     }
 
+    /**
+     * Remove enclosure
+     * @param selectedItem
+     * @return
+     */
     public boolean removeEnclosure(String selectedItem) {
         Enclosure enclosure = Data.getInstance().getCurrentZoo().getEnclosureByName(selectedItem);
         if (currentEnclosure == enclosure) setCurrentEnclosure(null);
@@ -157,6 +248,10 @@ public class SimulationViewModel {
         return true;
     }
 
+    /**
+     * Feed creature
+     * @param creatureName
+     */
     public void feedCreature(String creatureName) {
         Creature creature = currentEnclosure.getCreatureByName(creatureName);
         if (creature == null) return;
@@ -165,6 +260,10 @@ public class SimulationViewModel {
         Data.getInstance().addLogMessage(creature.getName() + " is fed!");
     }
 
+    /**
+     * Maintain enclosure
+     * @param enclosureName
+     */
     public void maintainEnclosure(String enclosureName) {
         Enclosure enclosure = Data.getInstance().getCurrentZoo().getEnclosureByName(enclosureName);
         if (enclosure == null) return;
@@ -172,6 +271,10 @@ public class SimulationViewModel {
         Data.getInstance().addLogMessage(enclosure.getName() + " is maintained!");
     }
 
+    /**
+     * Heal creature
+     * @param creatureName
+     */
     public void healCreature(String creatureName) {
         Creature creature = currentEnclosure.getCreatureByName(creatureName);
         if (creature == null) return;
@@ -180,6 +283,11 @@ public class SimulationViewModel {
         Data.getInstance().addLogMessage(creature.getName() + " is healed!");
     }
 
+    /**
+     * Check zoo has enclosure
+     * @param enclosureName
+     * @return true if zoo has enclosure, false otherwise
+     */
     public boolean hasEnclosure(String enclosureName) {
         return Data.getInstance().getCurrentZoo().getEnclosureByName(enclosureName) != null;
     }

@@ -8,10 +8,18 @@ import org.example.model.tasks.Task;
 public class Cleanliness extends Task {
     private Enclosure enclosure;
 
+    /**
+     * Constructor for Cleanliness task
+     * @param enclosure
+     */
     public Cleanliness(Enclosure enclosure) {
         this.enclosure = enclosure;
     }
 
+    /**
+     * Cleanliness task
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         if (enclosure.isClean()) {

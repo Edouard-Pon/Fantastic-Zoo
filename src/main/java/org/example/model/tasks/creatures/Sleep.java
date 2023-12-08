@@ -8,10 +8,18 @@ import org.example.model.tasks.Task;
 public class Sleep extends Task {
     private Creature creature;
 
+    /**
+     * Constructor for Sleep
+     * @param creature
+     */
     public Sleep(Creature creature) {
         this.creature = creature;
     }
 
+    /**
+     * Sleeps for a random amount of time between 10 and 20 seconds
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         int randomNumber = (int) (Math.random() * 10);

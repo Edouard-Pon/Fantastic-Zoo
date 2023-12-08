@@ -7,10 +7,16 @@ public abstract class Task implements Runnable {
         return isRunning;
     }
 
+    /**
+     * Stop the task.
+     */
     public void stop() {
         isRunning = false;
     }
 
+    /**
+     * Run the task.
+     */
     @Override
     public void run() {
         while (isRunning) {
@@ -22,5 +28,10 @@ public abstract class Task implements Runnable {
         }
     }
 
+    /**
+     * The task to be executed.
+     *
+     * @throws InterruptedException if the thread is interrupted
+     */
     protected abstract void task() throws InterruptedException;
 }

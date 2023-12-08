@@ -12,10 +12,18 @@ public class Abilities extends Task {
     private Creature creature;
     private Random random = new Random();
 
+    /**
+     * Constructor for Abilities
+     * @param creature
+     */
     public Abilities(Creature creature) {
         this.creature = creature;
     }
 
+    /**
+     * Method that randomly chooses an ability for the creature to perform
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         int randomNumber = (int) (Math.random() * 10);

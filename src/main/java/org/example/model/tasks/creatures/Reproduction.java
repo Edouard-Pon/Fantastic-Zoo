@@ -17,11 +17,19 @@ public class Reproduction extends Task {
     Creature child;
     Random random;
 
+    /**
+     * Constructor of the reproduction task
+     * @param enclosure
+     */
     public Reproduction(Enclosure enclosure) {
         this.enclosure = enclosure;
         random = new Random();
     }
 
+    /**
+     * Method that runs the reproduction task
+     * @throws InterruptedException
+     */
     @Override
     public void task() throws InterruptedException {
         Thread.sleep(180000);
@@ -32,6 +40,9 @@ public class Reproduction extends Task {
         else reproduce();
     }
 
+    /**
+     * Method that gets two creatures from the enclosure
+     */
     private void getCreatures() {
         firstCreature = enclosure.getCreaturesList().get(random.nextInt(enclosure.getCreaturesList().size()));
         secondCreature = enclosure.getCreaturesList().get(random.nextInt(enclosure.getCreaturesList().size()));
@@ -41,6 +52,9 @@ public class Reproduction extends Task {
     }
 
     // TODO Separate the reproduction and the birth tasks
+    /**
+     * Method that reproduces two creatures
+     */
     private void reproduce() {
         if (firstCreature.isGender() != secondCreature.isGender()) {
             if (super.isRunning()) Platform.runLater(() -> Data.getInstance().addLogMessage("Creature " + firstCreature.getName() + " reproduced with " + secondCreature.getName()));

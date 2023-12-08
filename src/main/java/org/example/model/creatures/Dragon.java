@@ -9,10 +9,21 @@ import org.example.model.abilities.Swimming;
 
 public class Dragon extends Oviparous implements Running, Flying, Swimming {
 
+    /**
+     * Constructor of Dragon
+     * @param name
+     * @param gender
+     * @param weight
+     * @param height
+     * @param age
+     */
     public Dragon(String name, boolean gender, float weight, float height, int age) {
         super(name, gender, weight, height, age);
     }
 
+    /**
+     * Reborn the dragon
+     */
     public void reborn() {
         this.setAge(0);
         this.setAlive(true);
@@ -24,16 +35,25 @@ public class Dragon extends Oviparous implements Running, Flying, Swimming {
         Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " has reborn!"));
     }
 
+    /**
+     * Dragon is flying
+     */
     @Override
     public void fly() {
         Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is flying!"));
     }
 
+    /**
+     * Dragon is running
+     */
     @Override
     public void run() {
         Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is running!"));
     }
 
+    /**
+     * Dragon is swimming
+     */
     @Override
     public void swim() {
         Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is swimming!"));

@@ -9,10 +9,18 @@ import org.example.view.manager.SceneManager;
 public class Aging extends Task {
     private Creature creature;
 
+    /**
+     * Aging task constructor
+     * @param creature Creature to age
+     */
     public Aging(Creature creature) {
         this.creature = creature;
     }
 
+    /**
+     * Aging task
+     * @throws InterruptedException
+     */
     @Override
     protected void task() throws InterruptedException {
         Thread.sleep(10000);

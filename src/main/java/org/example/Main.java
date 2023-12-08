@@ -19,13 +19,13 @@ public class Main extends Application {
 
         SceneManager.getInstance().showScene("MainView");
 
-        DevTools.getInstance().createMaster();
-        DevTools.getInstance().createZoo();
-        DevTools.getInstance().setCurrentZoo();
-        DevTools.getInstance().createEnclosure();
-        DevTools.getInstance().createCreature();
-        DevTools.getInstance().createCreature();
-        DevTools.getInstance().createCreature();
+//        DevTools.getInstance().createMaster();
+//        DevTools.getInstance().createZoo();
+//        DevTools.getInstance().setCurrentZoo();
+//        DevTools.getInstance().createEnclosure();
+//        DevTools.getInstance().createCreature();
+//        DevTools.getInstance().createCreature();
+//        DevTools.getInstance().createCreature();
     }
 
     public static void main(String[] args) {

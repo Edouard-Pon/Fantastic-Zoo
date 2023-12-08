@@ -159,7 +159,8 @@ public class Creature {
                 new Health(this),
                 new Hunger(this),
                 new Sleep(this),
-                new Death(this)
+                new Death(this),
+                new Abilities(this)
         );
     }
 

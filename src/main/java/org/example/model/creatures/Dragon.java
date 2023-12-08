@@ -26,16 +26,16 @@ public class Dragon extends Oviparous implements Running, Flying, Swimming {
 
     @Override
     public void fly() {
-
+        Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is flying!"));
     }
 
     @Override
     public void run() {
-
+        Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is running!"));
     }
 
     @Override
     public void swim() {
-
+        Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is swimming!"));
     }
 }

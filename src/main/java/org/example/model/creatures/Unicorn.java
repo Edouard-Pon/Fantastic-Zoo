@@ -1,6 +1,8 @@
 package org.example.model.creatures;
 
+import javafx.application.Platform;
 import org.example.model.abilities.Running;
+import org.example.model.data.Data;
 import org.example.model.reproduction.Viviparous;
 
 public class Unicorn extends Viviparous implements Running {
@@ -10,6 +12,6 @@ public class Unicorn extends Viviparous implements Running {
 
     @Override
     public void run() {
-
+        Platform.runLater(() -> Data.getInstance().addLogMessage(getName() + " is running"));
     }
 }

@@ -1,15 +1,17 @@
-package org.example.model.creatures;
+package org.example.model.groups;
+
+import org.example.model.creatures.Lycanthrope;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pack {
+public class LycanthropePack {
 
     private Lycanthrope alphaMale;
     private Lycanthrope alphaFemale;
     private List<Lycanthrope> members;
 
-    public Pack(Lycanthrope alphaMale, Lycanthrope alphaFemale) {
+    public LycanthropePack(Lycanthrope alphaMale, Lycanthrope alphaFemale) {
         this.alphaMale = alphaMale;
         this.alphaFemale = alphaFemale;
         this.members = new ArrayList<>();
@@ -46,16 +48,14 @@ public class Pack {
     }
 
     public void reproduce() {
-        // Implement the reproduction logic for the pack
+        // TODO Implement the reproduction logic for the pack
     }
 
     public void decreaseRanksNaturally() {
-        // Implement the logic to decrease ranks naturally over time
+        // TODO Implement the logic to decrease ranks naturally over time
     }
 
     public void declareOmegas() {
-        // Implement the logic to declare omegas within the pack
+        // TODO Implement the logic to declare omegas within the pack
     }
-
-    // Add other methods as needed
 }

@@ -23,6 +23,6 @@ public class Phoenix extends Oviparous implements Flying {
 
     @Override
     public void fly() {
-
+        Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is flying!"));
     }
 }

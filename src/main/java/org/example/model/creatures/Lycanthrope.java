@@ -1,6 +1,8 @@
 package org.example.model.creatures;
 
+import javafx.application.Platform;
 import org.example.model.abilities.Running;
+import org.example.model.data.Data;
 import org.example.model.reproduction.Viviparous;
 
 public class Lycanthrope extends Viviparous implements Running {
@@ -149,7 +151,7 @@ public class Lycanthrope extends Viviparous implements Running {
 
     @Override
     public void run() {
-        System.out.println("Lycanthrope is running");
+        Platform.runLater(() -> Data.getInstance().addLogMessage(this.getName() + " is running!"));
     }
 }
 

@@ -59,6 +59,11 @@ public class AddCreatureController {
         String creatureAge = txtCreatureAge.getText();
         String creatureEnclosure = cbCreatureEnclosure.getValue();
 
+        if (viewModel.hasCreature(creatureName, creatureEnclosure)) {
+            lblWarning.setText("Creature already exists");
+            return;
+        }
+
         if (viewModel.createCreature(creatureType, creatureName, creatureGender, creatureWeight, creatureHeight, creatureAge, creatureEnclosure)) {
             clearFields();
             SceneManager.getInstance().closePopup("AddCreatureView");

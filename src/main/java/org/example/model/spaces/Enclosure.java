@@ -3,6 +3,7 @@ package org.example.model.spaces;
 import org.example.model.creatures.Creature;
 import org.example.model.data.Data;
 import org.example.model.tasks.TaskManager;
+import org.example.model.tasks.creatures.Reproduction;
 import org.example.model.tasks.enclosures.Cleanliness;
 
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class Enclosure {
         this.creaturesList = new ArrayList<>();
         this.taskManager = new TaskManager();
         taskManager.startTasks(
-                new Cleanliness(this)
+                new Cleanliness(this),
+                new Reproduction(this)
         );
     }
 

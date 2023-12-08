@@ -85,6 +85,11 @@ public class AddEnclosureController {
         String depth = txtEnclosureDepth.getText();
         String waterSalinity = txtEnclosureWaterSalinity.getText();
 
+        if (viewModel.hasEnclosure(name)) {
+            lblWarning.setText("Enclosure already exists");
+            return;
+        }
+
         if (viewModel.createEnclosure(name, type, area, maxCreatures, height, depth, waterSalinity)) {
             clearFields();
             SceneManager.getInstance().closePopup("AddEnclosureView");

@@ -78,6 +78,14 @@ public class SimulationViewModel {
         return currentEnclosure;
     }
 
+    public Enclosure getEnclosureByName(String name) {
+        return Data.getInstance().getCurrentZoo().getEnclosureByName(name);
+    }
+
+    public boolean hasCreature(String creatureName, String enclosureName) {
+        return Data.getInstance().getCurrentZoo().getEnclosureByName(enclosureName).getCreatureByName(creatureName) != null;
+    }
+
     public ArrayList<String> currentEnclosureCreaturesNamesList() {
         ArrayList<String> creatureNames = new ArrayList<>();
         if (currentEnclosure == null) return creatureNames;
@@ -170,5 +178,9 @@ public class SimulationViewModel {
         if (creature.isHealthy()) return;
         creature.heal();
         Data.getInstance().addLogMessage(creature.getName() + " is healed!");
+    }
+
+    public boolean hasEnclosure(String enclosureName) {
+        return Data.getInstance().getCurrentZoo().getEnclosureByName(enclosureName) != null;
     }
 }

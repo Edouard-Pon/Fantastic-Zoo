@@ -32,7 +32,7 @@ public class DevTools {
     }
 
     public void createEnclosure() {
-        Data.getInstance().getCurrentZoo().addEnclosure(new Enclosure("Test Enclosure", "Test Area", 3));
+        Data.getInstance().getCurrentZoo().addEnclosure(new Enclosure("Test Enclosure", "Test Area", 10));
     }
 
     public void createCreature() {
